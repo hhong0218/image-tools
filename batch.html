@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk Image Converter — Convert Many Images at Once, Free & Private | ImageTools</title>
+  <meta name="description" content="Batch convert multiple images at once to JPG, PNG or WebP, with optional resize — then download them all as a ZIP. No uploads, no signup; everything runs in your browser.">
+  <meta name="keywords" content="bulk image converter, batch convert images, convert multiple images, batch image converter, mass image converter, resize multiple images">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Bulk Image Converter — Convert Many at Once">
+  <meta property="og:description" content="Batch convert and resize multiple images, download as a ZIP. Nothing uploaded, no signup.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <script>(function(){var l=document.createElement('link');l.rel='canonical';l.href="https://image.quietools.com"+location.pathname;document.head.appendChild(l);})();</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9QKMV5JQL5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9QKMV5JQL5');
+  </script>
+  <!-- JSZip — bundles the converted files into a ZIP, all in the browser -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <style>
+    :root{--bg:#f6f8fc;--panel:#ffffff;--panel-2:#f1f4fa;--border:#e2e8f3;--border-strong:#cdd6e8;--text:#1a2233;--muted:#6b7689;--accent:#5b6cff;--accent-2:#7c4dff;--accent-soft:#eef0ff;--err:#e5484d;--ok:#1f9d55;--shadow:0 1px 3px rgba(20,30,60,.06),0 8px 24px rgba(20,30,60,.06);}
+    @media (prefers-color-scheme: dark){:root{--bg:#0f1320;--panel:#171c2c;--panel-2:#1e2435;--border:#2a3145;--border-strong:#39415a;--text:#e8ecf5;--muted:#9aa4ba;--accent:#7c8bff;--accent-2:#a98bff;--accent-soft:#222a45;--err:#ff6b6b;--ok:#4ade80;--shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);}}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    header{border-bottom:1px solid var(--border);padding:.85rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:var(--panel)}
+    .logo{font-size:1.15rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:.5rem;letter-spacing:-.01em}
+    .logo .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:.95rem}
+    .logo span{color:var(--accent)}
+    .priv-pill{font-size:.72rem;font-weight:600;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent);border:1px solid color-mix(in srgb,var(--ok) 30%,transparent);padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+    main{max-width:860px;margin:0 auto;padding:1.5rem 1.25rem 0}
+    .crumb{font-size:.82rem;color:var(--muted);margin-bottom:1rem}
+    .hero{text-align:center;padding:.5rem 0 .25rem}
+    h1{font-size:1.9rem;margin-bottom:.5rem;letter-spacing:-.02em;line-height:1.2}
+    .hero .lead{color:var(--muted);max-width:600px;margin:0 auto;font-size:1.01rem}
+    .ad-slot{margin:1.5rem 0;min-height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;border:1px dashed var(--border-strong);border-radius:12px;background:var(--panel-2)}
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:1.5rem;box-shadow:var(--shadow);margin-top:1rem}
+    .drop{display:block;border:2px dashed var(--border-strong);border-radius:14px;padding:2rem 1rem;text-align:center;cursor:pointer;transition:.18s;background:var(--panel-2);position:relative}
+    .drop:hover,.drop.drag{border-color:var(--accent);background:var(--accent-soft)}
+    .drop .big{font-size:2.2rem;line-height:1;margin-bottom:.6rem}
+    .drop .t{font-weight:600;margin-bottom:.25rem}
+    .drop .s{color:var(--muted);font-size:.85rem}
+    .drop input[type=file]{display:none}
+    .controls{margin-top:1.25rem;display:none}.controls.show{display:block}
+    .optbar{display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-end;margin-bottom:1rem}
+    .field{display:flex;flex-direction:column;gap:.35rem}
+    .field label{font-size:.78rem;font-weight:600;color:var(--muted)}
+    select,input[type=number]{background:var(--panel);color:var(--text);border:1px solid var(--border-strong);border-radius:9px;padding:.55rem .7rem;font-size:.92rem;font-family:inherit}
+    input[type=number]{width:120px}
+    select:focus,input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+    .qwrap{min-width:200px;flex:1 1 200px}
+    .qwrap .lab{display:flex;justify-content:space-between;font-size:.78rem;font-weight:600;color:var(--muted);margin-bottom:.35rem}
+    .qwrap .lab b{color:var(--accent)}
+    input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;height:6px}
+    .actions{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:.5rem}
+    button.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border:none;border-radius:10px;padding:.7rem 1.4rem;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+    button.primary:hover{filter:brightness(1.05)}button.primary:disabled{opacity:.5;cursor:not-allowed;filter:none}
+    button.ghost{background:var(--panel-2);color:var(--text);border:1px solid var(--border-strong);border-radius:10px;padding:.7rem 1.1rem;font-size:.92rem;font-weight:600;cursor:pointer}
+    button.ghost:disabled{opacity:.5;cursor:not-allowed}
+    .listwrap{margin-top:1.1rem;border:1px solid var(--border);border-radius:12px;overflow:hidden;display:none}
+    .listwrap.show{display:block}
+    .lhead{display:flex;justify-content:space-between;align-items:center;padding:.6rem .9rem;background:var(--panel-2);font-size:.82rem;color:var(--muted);font-weight:600}
+    .flist{max-height:340px;overflow:auto}
+    .frow{display:grid;grid-template-columns:1fr auto auto;gap:.75rem;align-items:center;padding:.55rem .9rem;border-top:1px solid var(--border);font-size:.88rem}
+    .frow .fn{font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .frow .fs{color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+    .frow .fs b{color:var(--ok)}
+    .frow .fstat{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+    .fstat.pending{color:var(--muted)} .fstat.working{color:var(--accent)} .fstat.done{color:var(--ok)} .fstat.error{color:var(--err)}
+    .status{margin:1rem 0 0;font-size:.9rem;min-height:1.3em}
+    .status.error{color:var(--err);font-weight:600}.status.ok{color:var(--ok);font-weight:600}
+    .spin{display:inline-block;width:.85em;height:.85em;border:2px solid color-mix(in srgb,var(--accent) 35%,transparent);border-top-color:var(--accent);border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px;margin-right:.4rem}
+    @keyframes sp{to{transform:rotate(360deg)}}
+    .related{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+    .related a{font-size:.85rem;background:var(--panel);border:1px solid var(--border-strong);border-radius:999px;padding:.4rem .85rem;color:var(--text)}
+    .related a:hover{border-color:var(--accent);text-decoration:none}
+    .seo{margin-top:2.5rem;border-top:1px solid var(--border);padding-top:1.75rem}
+    .seo h2{font-size:1.25rem;margin:1.5rem 0 .5rem;letter-spacing:-.01em}.seo h2:first-child{margin-top:0}
+    .seo p,.seo li{color:var(--muted);margin-bottom:.5rem}.seo ul{margin:0 0 .5rem 1.25rem}.seo strong{color:var(--text)}
+    .faq-q{font-weight:700;color:var(--text);margin-top:.75rem}
+    footer{border-top:1px solid var(--border);padding:2rem 1.25rem;text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem}
+    footer .links{margin-top:.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" class="logo"><span class="mark">◩</span>Image<span>Tools</span></a>
+    <span class="priv-pill">🔒 100% in your browser</span>
+  </header>
+  <main>
+    <p class="crumb"><a href="/">Home</a> › Bulk Converter</p>
+    <section class="hero">
+      <h1>Bulk Image Converter</h1>
+      <p class="lead">Convert and resize many images at once, then download them all as a ZIP. No uploads, no signup — every file is processed privately on your own device.</p>
+    </section>
+    <!-- AD-SLOT:Top | AdSense 승인 후 교체 -->
+    <div class="ad-slot">Advertisement</div>
+    <div class="panel">
+      <label class="drop" id="drop">
+        <div class="big">🗂️</div>
+        <div class="t">Drop images here or click to browse</div>
+        <div class="s">Select many at once — PNG, JPG, WebP, GIF, BMP. Files never leave your device.</div>
+        <input type="file" id="file" accept="image/png,image/jpeg,image/webp,image/gif,image/bmp" multiple>
+      </label>
+      <div class="controls" id="ctrl">
+        <div class="optbar">
+          <div class="field">
+            <label for="fmt">Convert all to</label>
+            <select id="fmt">
+              <option value="image/jpeg">JPG</option>
+              <option value="image/png">PNG</option>
+              <option value="image/webp">WebP</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="maxw">Max width (px, optional)</label>
+            <input type="number" id="maxw" min="0" step="1" placeholder="e.g. 1920">
+          </div>
+          <div class="qwrap" id="qwrap">
+            <div class="lab"><span>Quality</span><b id="qval">90%</b></div>
+            <input type="range" id="quality" min="30" max="100" value="90">
+          </div>
+        </div>
+        <div class="actions">
+          <button class="primary" id="convAll" onclick="convertAll()" disabled>Convert all</button>
+          <button class="primary" id="zip" onclick="downloadZip()" disabled>⬇ Download ZIP</button>
+          <button class="ghost" id="more" onclick="document.getElementById('file').click()">+ Add more</button>
+          <button class="ghost" onclick="clearAll()">Clear</button>
+        </div>
+        <div class="listwrap" id="listwrap">
+          <div class="lhead"><span><b id="count">0</b> images</span><span id="totals"></span></div>
+          <div class="flist" id="list"></div>
+        </div>
+        <p class="status" id="status"></p>
+      </div>
+      <div class="related">
+        <a href="/png-to-jpg">PNG → JPG</a>
+        <a href="/heic-to-jpg">HEIC → JPG</a>
+        <a href="/png-to-webp">PNG → WebP</a>
+        <a href="/">All image tools</a>
+      </div>
+    </div>
+    <!-- AD-SLOT:Mid | AdSense 승인 후 교체 -->
+    <div class="ad-slot">Advertisement</div>
+    <section class="seo">
+      <h2>Convert images in bulk — the fast way</h2>
+      <p>Converting photos one by one is tedious. This <strong>bulk image converter</strong> lets you drop a whole folder's worth of images, convert them all to the same format (JPG, PNG, or WebP), optionally shrink them to a maximum width, and download the lot as a single ZIP — in one pass.</p>
+      <h2>How to batch convert images</h2>
+      <ul>
+        <li>Drop or select <strong>multiple images</strong> at once (hold Ctrl/Cmd or Shift in the picker). Add more any time.</li>
+        <li>Choose the <strong>output format</strong> and, if you want smaller files, a <strong>max width</strong> and <strong>quality</strong>.</li>
+        <li>Click <strong>Convert all</strong>, then <strong>Download ZIP</strong> to get every converted image in one archive.</li>
+      </ul>
+      <h2>Frequently asked questions</h2>
+      <p class="faq-q">Are my images uploaded?</p>
+      <p>No. Every image is decoded, resized, and re-encoded with the browser's <code>&lt;canvas&gt;</code>, and zipped locally with the open-source JSZip library. <strong>Nothing is uploaded</strong> — there's no server and no account.</p>
+      <p class="faq-q">How many images can I convert at once?</p>
+      <p>There's no hard limit, but very large batches use more memory since everything is held in your browser. A few dozen photos at a time is comfortable on most devices.</p>
+      <p class="faq-q">Can I batch convert HEIC (iPhone) photos here?</p>
+      <p>This bulk tool handles PNG, JPG, WebP, GIF, and BMP. For iPhone HEIC photos, use the dedicated <a href="/heic-to-jpg">HEIC to JPG</a> converter.</p>
+    </section>
+  </main>
+  <footer>
+    <p>ImageTools — free, private, browser-based image utilities. Your files never leave your device.</p>
+    <div class="links"><a href="/">All tools</a><a href="/png-to-jpg">PNG to JPG</a><a href="/heic-to-jpg">HEIC to JPG</a></div>
+  </footer>
+  <script>
+    "use strict";
+    var items = [];
+    function $(id){ return document.getElementById(id); }
+    function setStatus(msg,type,spin){ var el=$('status'); el.innerHTML=(spin?'<span class="spin"></span>':'')+msg; el.className='status'+(type?' '+type:''); }
+    function fmtBytes(b){ if(b===0||b==null)return '0 B'; var k=1024,u=['B','KB','MB','GB'],i=Math.min(Math.floor(Math.log(b)/Math.log(k)),u.length-1); return (b/Math.pow(k,i)).toFixed(i===0?0:(b/Math.pow(k,i)>=100?0:1))+' '+u[i]; }
+    function baseName(n){ return (n||'image').replace(/\.[^.]+$/, ''); }
+    function extFor(m){ return m==='image/png'?'png':m==='image/webp'?'webp':'jpg'; }
+    function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function targetMime(){ return $('fmt').value; }
+
+    var quality=$('quality'), qval=$('qval');
+    quality.addEventListener('input', function(){ qval.textContent=quality.value+'%'; });
+    $('fmt').addEventListener('change', function(){ $('qwrap').style.display = (targetMime()==='image/png') ? 'none' : 'block'; });
+
+    function statusLabel(it){ return it.status==='done'?'done':it.status==='working'?'…':it.status==='error'?'error':'pending'; }
+    function render(){
+      var html='';
+      for(var i=0;i<items.length;i++){ var it=items[i];
+        html += '<div class="frow"><span class="fn">'+esc(it.name)+'</span><span class="fs">'+fmtBytes(it.origSize)+(it.blob?(' &rarr; <b>'+fmtBytes(it.blob.size)+'</b>'):'')+'</span><span class="fstat '+it.status+'">'+statusLabel(it)+'</span></div>';
+      }
+      $('list').innerHTML=html;
+      $('count').textContent=items.length;
+      $('listwrap').classList.toggle('show', items.length>0);
+      $('convAll').disabled = items.length===0;
+      var done=items.filter(function(it){return it.blob;});
+      $('zip').disabled = done.length===0;
+      if(done.length){ var tot=done.reduce(function(a,it){return a+it.blob.size;},0); $('totals').textContent=done.length+' ready · '+fmtBytes(tot); } else { $('totals').textContent=''; }
+    }
+    function addFiles(fl){
+      [].forEach.call(fl, function(f){
+        if(!f.type.startsWith('image/') && !/\.(png|jpe?g|webp|gif|bmp)$/i.test(f.name)) return;
+        items.push({ file:f, name:f.name, blob:null, status:'pending', origSize:f.size });
+      });
+      $('ctrl').classList.add('show');
+      render();
+    }
+    var drop=$('drop'), input=$('file');
+    input.addEventListener('change', function(){ if(input.files&&input.files.length) addFiles(input.files); input.value=''; });
+    ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.add('drag'); }); });
+    ['dragleave','dragend','drop'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.remove('drag'); }); });
+    drop.addEventListener('drop', function(e){ var f=e.dataTransfer&&e.dataTransfer.files; if(f&&f.length) addFiles(f); });
+
+    function loadImage(file){ return new Promise(function(res,rej){ var r=new FileReader(); r.onerror=rej; r.onload=function(e){ var im=new Image(); im.onload=function(){res(im);}; im.onerror=rej; im.src=e.target.result; }; r.readAsDataURL(file); }); }
+    function convertOne(it){
+      var mime=targetMime();
+      return loadImage(it.file).then(function(img){
+        var w=img.naturalWidth, h=img.naturalHeight;
+        var maxW=parseInt($('maxw').value,10);
+        if(maxW>0 && w>maxW){ h=Math.max(1,Math.round(h*maxW/w)); w=maxW; }
+        var canvas=document.createElement('canvas'); canvas.width=w; canvas.height=h;
+        var ctx=canvas.getContext('2d');
+        if(mime==='image/jpeg'){ ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,w,h); }
+        ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality='high';
+        ctx.drawImage(img,0,0,w,h);
+        var q=Math.min(1,Math.max(0.3,parseInt(quality.value,10)/100));
+        return new Promise(function(res){ canvas.toBlob(function(b){ res(b); }, mime, q); });
+      }).then(function(blob){ it.blob=blob||null; it.status=blob?'done':'error'; })
+        .catch(function(){ it.status='error'; });
+    }
+    function convertAll(){
+      if(!items.length) return;
+      items.forEach(function(it){ it.blob=null; it.status='pending'; });
+      render();
+      $('convAll').disabled=true;
+      setStatus('Converting '+items.length+' images locally…','',true);
+      var i=0;
+      (function next(){
+        if(i>=items.length){ var ok=items.filter(function(it){return it.blob;}).length; setStatus('✓ Converted '+ok+' / '+items.length+'. Click Download ZIP.', ok?'ok':'error'); $('convAll').disabled=false; render(); return; }
+        var it=items[i++]; it.status='working'; render();
+        convertOne(it).then(function(){ render(); next(); });
+      })();
+    }
+    function downloadZip(){
+      if(typeof JSZip!=='function'){ setStatus('ZIP library is still loading — try again in a moment.','error'); return; }
+      var done=items.filter(function(it){return it.blob;});
+      if(!done.length){ setStatus('Convert some images first.','error'); return; }
+      var zip=new JSZip(), used={}, ext=extFor(targetMime());
+      done.forEach(function(it){ var nm=baseName(it.name)+'.'+ext; if(used[nm]){ used[nm]++; nm=baseName(it.name)+'-'+used[nm]+'.'+ext; } else { used[nm]=1; } zip.file(nm, it.blob); });
+      setStatus('Creating ZIP…','',true);
+      zip.generateAsync({type:'blob'}).then(function(blob){
+        var url=URL.createObjectURL(blob); var a=document.createElement('a'); a.href=url; a.download='images-converted.zip'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){ try{URL.revokeObjectURL(url);}catch(e){} },3000);
+        setStatus('✓ Downloaded images-converted.zip ('+done.length+' files).','ok');
+        try{ gtag('event','batch_zip',{count:done.length}); }catch(e){}
+      }).catch(function(){ setStatus('Could not build the ZIP. Try fewer/smaller images.','error'); });
+    }
+    function clearAll(){ items=[]; $('ctrl').classList.remove('show'); $('file').value=''; setStatus('',''); render(); }
+    window.convertAll=convertAll; window.downloadZip=downloadZip; window.clearAll=clearAll;
+  </script>
+</body>
+</html>

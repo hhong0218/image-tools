@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PNG to WebP Converter — Free, Private, In Your Browser | ImageTools</title>
+  <meta name="description" content="Convert PNG to WebP free online. No uploads, no signup — your images are converted locally in your browser.">
+  <meta name="keywords" content="png to webp, convert png to webp, png to webp converter, webp converter, optimize png">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="PNG to WebP Converter — Free & Private">
+  <meta property="og:description" content="Convert PNG to WebP instantly in your browser. Nothing uploaded, no signup.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <script>(function(){var l=document.createElement('link');l.rel='canonical';l.href="https://image.quietools.com"+location.pathname;document.head.appendChild(l);})();</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9QKMV5JQL5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9QKMV5JQL5');
+  </script>
+  <style>
+    :root{--bg:#f6f8fc;--panel:#ffffff;--panel-2:#f1f4fa;--border:#e2e8f3;--border-strong:#cdd6e8;--text:#1a2233;--muted:#6b7689;--accent:#5b6cff;--accent-2:#7c4dff;--accent-soft:#eef0ff;--err:#e5484d;--ok:#1f9d55;--shadow:0 1px 3px rgba(20,30,60,.06),0 8px 24px rgba(20,30,60,.06);}
+    @media (prefers-color-scheme: dark){:root{--bg:#0f1320;--panel:#171c2c;--panel-2:#1e2435;--border:#2a3145;--border-strong:#39415a;--text:#e8ecf5;--muted:#9aa4ba;--accent:#7c8bff;--accent-2:#a98bff;--accent-soft:#222a45;--err:#ff6b6b;--ok:#4ade80;--shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);}}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    header{border-bottom:1px solid var(--border);padding:.85rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:var(--panel)}
+    .logo{font-size:1.15rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:.5rem;letter-spacing:-.01em}
+    .logo .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:.95rem}
+    .logo span{color:var(--accent)}
+    .priv-pill{font-size:.72rem;font-weight:600;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent);border:1px solid color-mix(in srgb,var(--ok) 30%,transparent);padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+    main{max-width:860px;margin:0 auto;padding:1.5rem 1.25rem 0}
+    .crumb{font-size:.82rem;color:var(--muted);margin-bottom:1rem}
+    .hero{text-align:center;padding:.5rem 0 .25rem}
+    h1{font-size:1.9rem;margin-bottom:.5rem;letter-spacing:-.02em;line-height:1.2}
+    .hero .lead{color:var(--muted);max-width:600px;margin:0 auto;font-size:1.01rem}
+    .ad-slot{margin:1.5rem 0;min-height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;border:1px dashed var(--border-strong);border-radius:12px;background:var(--panel-2)}
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:1.5rem;box-shadow:var(--shadow);margin-top:1rem}
+    .drop{display:block;border:2px dashed var(--border-strong);border-radius:14px;padding:2.25rem 1rem;text-align:center;cursor:pointer;transition:.18s;background:var(--panel-2);position:relative}
+    .drop:hover,.drop.drag{border-color:var(--accent);background:var(--accent-soft)}
+    .drop .big{font-size:2.2rem;line-height:1;margin-bottom:.6rem}
+    .drop .t{font-weight:600;margin-bottom:.25rem}
+    .drop .s{color:var(--muted);font-size:.85rem}
+    .drop input[type=file]{display:none}
+    .controls{margin-top:1.25rem;display:none}.controls.show{display:block}
+    .sliderwrap{max-width:340px}
+    .sliderwrap .lab{display:flex;justify-content:space-between;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:.35rem}
+    .sliderwrap .lab b{color:var(--accent)}
+    input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;height:6px}
+    .actions{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:1.1rem}
+    button.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border:none;border-radius:10px;padding:.7rem 1.4rem;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+    button.primary:hover{filter:brightness(1.05)}
+    button.ghost{background:var(--panel-2);color:var(--text);border:1px solid var(--border-strong);border-radius:10px;padding:.7rem 1.1rem;font-size:.92rem;font-weight:600;cursor:pointer}
+    a.dl{display:inline-block;text-decoration:none}
+    .preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem}
+    @media(max-width:560px){.preview-grid{grid-template-columns:1fr}}
+    .pv{background:var(--panel-2);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center}
+    .pv h3{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:.6rem}
+    .pv .imgbox{background:repeating-conic-gradient(#0000 0% 25%, color-mix(in srgb,var(--muted) 12%,transparent) 0% 50%) 50% / 18px 18px;border-radius:8px;min-height:140px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .pv img{max-width:100%;max-height:240px;display:block;border-radius:6px}
+    .pv .meta{margin-top:.6rem;font-size:.85rem;color:var(--muted)}.pv .meta b{color:var(--text)}
+    .pv .delta{font-weight:700;color:var(--ok)}
+    .status{margin:1rem 0 0;font-size:.9rem;min-height:1.3em}
+    .status.error{color:var(--err);font-weight:600}.status.ok{color:var(--ok);font-weight:600}
+    .related{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+    .related a{font-size:.85rem;background:var(--panel);border:1px solid var(--border-strong);border-radius:999px;padding:.4rem .85rem;color:var(--text)}
+    .related a:hover{border-color:var(--accent);text-decoration:none}
+    .seo{margin-top:2.5rem;border-top:1px solid var(--border);padding-top:1.75rem}
+    .seo h2{font-size:1.25rem;margin:1.5rem 0 .5rem;letter-spacing:-.01em}.seo h2:first-child{margin-top:0}
+    .seo p,.seo li{color:var(--muted);margin-bottom:.5rem}.seo ul{margin:0 0 .5rem 1.25rem}.seo strong{color:var(--text)}
+    .faq-q{font-weight:700;color:var(--text);margin-top:.75rem}
+    footer{border-top:1px solid var(--border);padding:2rem 1.25rem;text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem}
+    footer .links{margin-top:.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" class="logo"><span class="mark">◩</span>Image<span>Tools</span></a>
+    <span class="priv-pill">🔒 100% in your browser</span>
+  </header>
+  <main>
+    <p class="crumb"><a href="/">Home</a> › PNG to WebP</p>
+    <section class="hero">
+      <h1>PNG to WebP Converter</h1>
+      <p class="lead">Convert PNG to WebP — a modern format that's much smaller while keeping transparency. Free, private, in your browser.</p>
+    </section>
+    <!-- AD-SLOT:Top | AdSense 승인 후 교체 -->
+    <div class="ad-slot">Advertisement</div>
+    <div class="panel">
+      <label class="drop" id="drop">
+        <div class="big">🖼️</div>
+        <div class="t">Drop a PNG here or click to browse</div>
+        <div class="s">PNG, JPG, WebP, GIF, BMP accepted — your file stays on your device</div>
+        <input type="file" id="file" accept="image/*">
+      </label>
+      <div class="controls" id="ctrl">
+        <div class="sliderwrap">
+          <div class="lab"><span>WebP quality</span><b id="qval">92%</b></div>
+          <input type="range" id="quality" min="1" max="100" value="92">
+        </div>
+        <div class="actions">
+          <button class="primary" id="go" onclick="convert()">Convert to WebP</button>
+          <button class="ghost" onclick="reset()">Choose another</button>
+        </div>
+        <div class="preview-grid" id="pv" style="display:none">
+          <div class="pv"><h3>Original (PNG)</h3><div class="imgbox"><img id="pv-orig" alt="Original preview"></div><div class="meta" id="pv-orig-meta"></div></div>
+          <div class="pv"><h3>Converted (WebP)</h3><div class="imgbox"><img id="pv-out" alt="Converted WebP preview"></div><div class="meta" id="pv-out-meta"></div>
+            <div class="actions" style="justify-content:center;margin-top:.75rem"><a id="dl" class="primary dl" download>⬇ Download WebP</a></div>
+          </div>
+        </div>
+        <p class="status" id="status"></p>
+      </div>
+      <div class="related">
+        <a href="/png-to-jpg">PNG → JPG</a>
+        <a href="/jpg-to-png">JPG → PNG</a>
+        <a href="/webp-to-png">WebP → PNG</a>
+        <a href="/jpg-to-webp">JPG → WebP</a>
+        <a href="/webp-to-jpg">WebP → JPG</a>
+        <a href="/">All image tools</a>
+      </div>
+    </div>
+    <!-- AD-SLOT:Mid | AdSense 승인 후 교체 -->
+    <div class="ad-slot">Advertisement</div>
+    <section class="seo">
+      <h2>Why convert PNG to WebP?</h2>
+      <p>WebP is a modern image format that typically produces <strong>much smaller files than PNG</strong> at the same visual quality, and it <strong>keeps transparency</strong>. It's the best choice for speeding up websites without losing your transparent backgrounds. All current major browsers support WebP.</p>
+      <h2>How to convert PNG to WebP</h2>
+      <ul>
+        <li>Drop your PNG into the box above (or click to browse). PNG, JPG, WebP, GIF and BMP all work as the source.</li>
+        <li>Pick a <strong>quality</strong> — 92% is a good balance of size and clarity. Then click <strong>Convert to WebP</strong>.</li>
+        <li>Check the before/after preview and the new file size, then hit <strong>Download WebP</strong>.</li>
+      </ul>
+      <h2>Frequently asked questions</h2>
+      <p class="faq-q">What about transparency and quality?</p>
+      <p>WebP supports transparency, so the transparent areas of your PNG are <strong>preserved</strong> in the WebP. Use the quality slider to trade size for fidelity.</p>
+      <p class="faq-q">Is it really free and private?</p>
+      <p>Yes. This converter is <strong>100% client-side</strong>: your image is read and converted on an HTML <code>&lt;canvas&gt;</code> right in your browser. Nothing is uploaded, there is no account, and no image ever leaves your device.</p>
+      <p class="faq-q">Can I convert several files at once?</p>
+      <p>This page handles one image at a time. Batch conversion is on the way — for now, convert and download each one, or use the main <a href="/">image tools</a> page.</p>
+    </section>
+  </main>
+  <footer>
+    <p>ImageTools — free, private, browser-based image utilities. Your files never leave your device.</p>
+    <div class="links"><a href="/">All tools</a><a href="/png-to-jpg">PNG to JPG</a><a href="/webp-to-png">WebP to PNG</a></div>
+  </footer>
+  <script>
+    "use strict";
+    var MIME="image/webp";
+    var img=null, file=null, name="image", lastUrl=null;
+    function $(id){ return document.getElementById(id); }
+    function setStatus(msg,type){ var el=$('status'); el.textContent=msg; el.className='status'+(type?' '+type:''); }
+    function fmtBytes(b){ if(b===0)return '0 B'; var k=1024,u=['B','KB','MB','GB'],i=Math.min(Math.floor(Math.log(b)/Math.log(k)),u.length-1); return (b/Math.pow(k,i)).toFixed(i===0?0:(b/Math.pow(k,i)>=100?0:1))+' '+u[i]; }
+    function baseName(n){ return (n||'image').replace(/\.[^.]+$/, ''); }
+    var quality=$('quality'), qval=$('qval'); quality.addEventListener('input', function(){ qval.textContent=quality.value+'%'; });
+    function loadFile(f){
+      if(!f) return;
+      if(!f.type.startsWith('image/') && !/\.(png|jpe?g|webp|gif|bmp|avif)$/i.test(f.name)){ setStatus('⚠️ That does not look like an image. Please choose a PNG, JPG, WebP, GIF or BMP.','error'); return; }
+      var reader=new FileReader();
+      reader.onerror=function(){ setStatus('⚠️ Could not read that file. Try another image.','error'); };
+      reader.onload=function(e){
+        var im=new Image();
+        im.onload=function(){ img=im; file=f; name=baseName(f.name); $('ctrl').classList.add('show'); $('pv').style.display='none'; $('pv-orig').src=im.src; $('pv-orig-meta').innerHTML='<b>'+im.naturalWidth+'×'+im.naturalHeight+'</b> · '+fmtBytes(f.size)+' · '+(f.type||'image'); setStatus('Loaded "'+f.name+'". Click Convert to WebP.','ok'); };
+        im.onerror=function(){ setStatus('⚠️ This file is not a valid or supported image.','error'); };
+        im.src=e.target.result;
+      };
+      reader.readAsDataURL(f);
+    }
+    var drop=$('drop'), input=$('file');
+    input.addEventListener('change', function(){ if(input.files[0]) loadFile(input.files[0]); });
+    ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.add('drag'); }); });
+    ['dragleave','dragend','drop'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.remove('drag'); }); });
+    drop.addEventListener('drop', function(e){ var f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0]; if(f) loadFile(f); });
+    function convert(){
+      if(!img){ setStatus('Please choose an image first.','error'); return; }
+      var q=Math.min(1, Math.max(0.01, parseInt($('quality').value,10)/100));
+      var canvas=document.createElement('canvas'); canvas.width=img.naturalWidth; canvas.height=img.naturalHeight;
+      var ctx=canvas.getContext('2d');
+      
+      ctx.drawImage(img,0,0);
+      canvas.toBlob(function(blob){
+        if(!blob){ setStatus('Could not convert this image in WebP. Try a smaller file.','error'); return; }
+        if(lastUrl){ try{ URL.revokeObjectURL(lastUrl); }catch(e){} }
+        var url=URL.createObjectURL(blob); lastUrl=url; $('pv-out').src=url;
+        var orig=file?file.size:0; var pct=orig>0?Math.round((1-blob.size/orig)*100):0;
+        var deltaHtml=(orig>0 && blob.size<=orig)?'<br><span class="delta">▼ '+pct+'% smaller</span>':'';
+        $('pv-out-meta').innerHTML='<b>'+fmtBytes(blob.size)+'</b> · WebP'+deltaHtml;
+        var dl=$('dl'); dl.href=url; dl.download=name+'.webp';
+        $('pv').style.display='grid';
+        setStatus('✓ Converted to WebP ('+fmtBytes(blob.size)+'). Click Download WebP.','ok');
+        try{ gtag('event','convert',{from:'png',to:'webp'}); }catch(e){}
+      }, MIME, q);
+    }
+    function reset(){ img=null; file=null; name='image'; $('ctrl').classList.remove('show'); $('pv').style.display='none'; $('file').value=''; setStatus('',''); }
+    window.convert=convert; window.reset=reset;
+  </script>
+</body>
+</html>

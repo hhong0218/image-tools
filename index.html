@@ -62,7 +62,7 @@
     @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
     .pane-head h2{font-size:1.25rem;margin-bottom:.25rem;letter-spacing:-.01em}
     .pane-head p{color:var(--muted);font-size:.92rem;margin-bottom:1.1rem}
-    .drop{border:2px dashed var(--border-strong);border-radius:14px;padding:2.25rem 1rem;text-align:center;cursor:pointer;transition:.18s;background:var(--panel-2);position:relative}
+    .drop{display:block;border:2px dashed var(--border-strong);border-radius:14px;padding:2.25rem 1rem;text-align:center;cursor:pointer;transition:.18s;background:var(--panel-2);position:relative}
     .drop:hover,.drop.drag{border-color:var(--accent);background:var(--accent-soft)}
     .drop .big{font-size:2.2rem;line-height:1;margin-bottom:.6rem}
     .drop .t{font-weight:600;margin-bottom:.25rem}
@@ -120,7 +120,7 @@
     footer .links{margin-top:.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
   </style>
-</head>
+<script>(function(){var l=document.createElement('link');l.rel='canonical';l.href="https://image.quietools.com"+location.pathname;document.head.appendChild(l);})();</script></head>
 <body>
   <header>
     <a href="/" class="logo"><span class="mark">◩</span>Image<span>Tools</span></a>
@@ -293,6 +293,29 @@
         </div>
       </section>
     </div>
+
+    <style>
+      .conv-sec{margin-top:1.75rem}
+      .conv-sec h2{font-size:1.15rem;margin-bottom:.75rem;letter-spacing:-.01em}
+      .conv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.6rem}
+      .conv-grid a{display:block;text-align:center;background:var(--panel);border:1px solid var(--border-strong);border-radius:10px;padding:.75rem .5rem;font-weight:600;color:var(--text);font-size:.92rem;text-decoration:none;transition:.15s}
+      .conv-grid a:hover{border-color:var(--accent);color:var(--accent)}
+    </style>
+    <section class="conv-sec" aria-label="Popular conversions">
+      <h2>Popular conversions — dedicated converters</h2>
+      <div class="conv-grid">
+        <a href="/heic-to-jpg">📱 HEIC → JPG</a>
+        <a href="/batch">🗂️ Bulk convert (many)</a>
+        <a href="/remove-exif">🧹 Remove EXIF / GPS</a>
+        <a href="/image-to-pdf">📄 Image → PDF</a>
+        <a href="/png-to-jpg">PNG → JPG</a>
+        <a href="/jpg-to-png">JPG → PNG</a>
+        <a href="/png-to-webp">PNG → WebP</a>
+        <a href="/webp-to-png">WebP → PNG</a>
+        <a href="/jpg-to-webp">JPG → WebP</a>
+        <a href="/webp-to-jpg">WebP → JPG</a>
+      </div>
+    </section>
 
     <!-- AD-SLOT:Mid | AdSense 승인 후 교체 -->
     <div class="ad-slot">Advertisement</div>

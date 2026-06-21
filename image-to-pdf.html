@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image to PDF — JPG/PNG to PDF, Free &amp; Private | ImageTools</title>
+  <meta name="description" content="Convert JPG, PNG and other images to a PDF — combine many images into one PDF, in order, with page size and margin options. No uploads, no signup; everything runs in your browser.">
+  <meta name="keywords" content="image to pdf, jpg to pdf, png to pdf, convert images to pdf, combine images into pdf, jpeg to pdf">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Image to PDF — JPG/PNG to PDF, Free">
+  <meta property="og:description" content="Combine JPG/PNG images into one PDF in your browser. Nothing uploaded, no signup.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <script>(function(){var l=document.createElement('link');l.rel='canonical';l.href="https://image.quietools.com"+location.pathname;document.head.appendChild(l);})();</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9QKMV5JQL5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9QKMV5JQL5');
+  </script>
+  <!-- jsPDF — builds the PDF in the browser -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    :root{--bg:#f6f8fc;--panel:#ffffff;--panel-2:#f1f4fa;--border:#e2e8f3;--border-strong:#cdd6e8;--text:#1a2233;--muted:#6b7689;--accent:#5b6cff;--accent-2:#7c4dff;--accent-soft:#eef0ff;--err:#e5484d;--ok:#1f9d55;--shadow:0 1px 3px rgba(20,30,60,.06),0 8px 24px rgba(20,30,60,.06);}
+    @media (prefers-color-scheme: dark){:root{--bg:#0f1320;--panel:#171c2c;--panel-2:#1e2435;--border:#2a3145;--border-strong:#39415a;--text:#e8ecf5;--muted:#9aa4ba;--accent:#7c8bff;--accent-2:#a98bff;--accent-soft:#222a45;--err:#ff6b6b;--ok:#4ade80;--shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);}}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    header{border-bottom:1px solid var(--border);padding:.85rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:var(--panel)}
+    .logo{font-size:1.15rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:.5rem;letter-spacing:-.01em}
+    .logo .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:.95rem}
+    .logo span{color:var(--accent)}
+    .priv-pill{font-size:.72rem;font-weight:600;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent);border:1px solid color-mix(in srgb,var(--ok) 30%,transparent);padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+    main{max-width:860px;margin:0 auto;padding:1.5rem 1.25rem 0}
+    .crumb{font-size:.82rem;color:var(--muted);margin-bottom:1rem}
+    .hero{text-align:center;padding:.5rem 0 .25rem}
+    h1{font-size:1.9rem;margin-bottom:.5rem;letter-spacing:-.02em;line-height:1.2}
+    .hero .lead{color:var(--muted);max-width:600px;margin:0 auto;font-size:1.01rem}
+    .ad-slot{margin:1.5rem 0;min-height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;border:1px dashed var(--border-strong);border-radius:12px;background:var(--panel-2)}
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:1.5rem;box-shadow:var(--shadow);margin-top:1rem}
+    .drop{display:block;border:2px dashed var(--border-strong);border-radius:14px;padding:2rem 1rem;text-align:center;cursor:pointer;transition:.18s;background:var(--panel-2);position:relative}
+    .drop:hover,.drop.drag{border-color:var(--accent);background:var(--accent-soft)}
+    .drop .big{font-size:2.2rem;line-height:1;margin-bottom:.6rem}
+    .drop .t{font-weight:600;margin-bottom:.25rem}
+    .drop .s{color:var(--muted);font-size:.85rem}
+    .drop input[type=file]{display:none}
+    .controls{margin-top:1.25rem;display:none}.controls.show{display:block}
+    .optbar{display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-end;margin-bottom:1rem}
+    .field{display:flex;flex-direction:column;gap:.35rem}
+    .field label{font-size:.78rem;font-weight:600;color:var(--muted)}
+    select{background:var(--panel);color:var(--text);border:1px solid var(--border-strong);border-radius:9px;padding:.55rem .7rem;font-size:.92rem;font-family:inherit;cursor:pointer}
+    select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+    .actions{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:.5rem}
+    button.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border:none;border-radius:10px;padding:.7rem 1.4rem;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+    button.primary:hover{filter:brightness(1.05)}button.primary:disabled{opacity:.5;cursor:not-allowed;filter:none}
+    button.ghost{background:var(--panel-2);color:var(--text);border:1px solid var(--border-strong);border-radius:10px;padding:.7rem 1.1rem;font-size:.92rem;font-weight:600;cursor:pointer}
+    .listwrap{margin-top:1.1rem;border:1px solid var(--border);border-radius:12px;overflow:hidden;display:none}
+    .listwrap.show{display:block}
+    .lhead{display:flex;justify-content:space-between;align-items:center;padding:.6rem .9rem;background:var(--panel-2);font-size:.82rem;color:var(--muted);font-weight:600}
+    .flist{max-height:320px;overflow:auto}
+    .frow{display:grid;grid-template-columns:auto 1fr auto auto;gap:.6rem;align-items:center;padding:.5rem .9rem;border-top:1px solid var(--border);font-size:.88rem}
+    .frow .th{width:34px;height:34px;border-radius:6px;object-fit:cover;background:var(--panel-2);border:1px solid var(--border)}
+    .frow .fn{font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .frow .ord{display:flex;gap:.2rem}
+    .frow .ord button{background:var(--panel-2);border:1px solid var(--border-strong);border-radius:6px;width:26px;height:26px;font-size:.8rem;cursor:pointer;color:var(--text);padding:0}
+    .frow .rm{background:transparent;border:none;color:var(--muted);font-size:1.05rem;cursor:pointer;padding:.1rem .3rem}
+    .frow .rm:hover{color:var(--err)}
+    .status{margin:1rem 0 0;font-size:.9rem;min-height:1.3em}
+    .status.error{color:var(--err);font-weight:600}.status.ok{color:var(--ok);font-weight:600}
+    .spin{display:inline-block;width:.85em;height:.85em;border:2px solid color-mix(in srgb,var(--accent) 35%,transparent);border-top-color:var(--accent);border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px;margin-right:.4rem}
+    @keyframes sp{to{transform:rotate(360deg)}}
+    .related{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+    .related a{font-size:.85rem;background:var(--panel);border:1px solid var(--border-strong);border-radius:999px;padding:.4rem .85rem;color:var(--text)}
+    .related a:hover{border-color:var(--accent);text-decoration:none}
+    .seo{margin-top:2.5rem;border-top:1px solid var(--border);padding-top:1.75rem}
+    .seo h2{font-size:1.25rem;margin:1.5rem 0 .5rem;letter-spacing:-.01em}.seo h2:first-child{margin-top:0}
+    .seo p,.seo li{color:var(--muted);margin-bottom:.5rem}.seo ul{margin:0 0 .5rem 1.25rem}.seo strong{color:var(--text)}
+    .faq-q{font-weight:700;color:var(--text);margin-top:.75rem}
+    footer{border-top:1px solid var(--border);padding:2rem 1.25rem;text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem}
+    footer .links{margin-top:.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" class="logo"><span class="mark">◩</span>Image<span>Tools</span></a>
+    <span class="priv-pill">🔒 100% in your browser</span>
+  </header>
+  <main>
+    <p class="crumb"><a href="/">Home</a> › Image to PDF</p>
+    <section class="hero">
+      <h1>Image to PDF</h1>
+      <p class="lead">Combine JPG, PNG and other images into a single PDF — in the order you choose, with page-size and margin options. No uploads, no signup; built right in your browser.</p>
+    </section>
+    <!-- AD-SLOT:Top | AdSense 승인 후 교체 -->
+    <div class="ad-slot">Advertisement</div>
+    <div class="panel">
+      <label class="drop" id="drop">
+        <div class="big">🖼️→📄</div>
+        <div class="t">Drop images here or click to browse</div>
+        <div class="s">JPG, PNG, WebP, GIF, BMP — add several; they become one PDF. Nothing is uploaded.</div>
+        <input type="file" id="file" accept="image/png,image/jpeg,image/webp,image/gif,image/bmp" multiple>
+      </label>
+      <div class="controls" id="ctrl">
+        <div class="optbar">
+          <div class="field">
+            <label for="psize">Page size</label>
+            <select id="psize"><option value="fit">Fit to image</option><option value="a4">A4</option><option value="letter">Letter</option></select>
+          </div>
+          <div class="field">
+            <label for="orient">Orientation</label>
+            <select id="orient"><option value="auto">Auto</option><option value="p">Portrait</option><option value="l">Landscape</option></select>
+          </div>
+          <div class="field">
+            <label for="margin">Margin</label>
+            <select id="margin"><option value="0">None</option><option value="18" selected>Small</option><option value="36">Normal</option></select>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="primary" id="go" onclick="createPdf()" disabled>Create PDF</button>
+          <button class="ghost" onclick="document.getElementById('file').click()">+ Add more</button>
+          <button class="ghost" onclick="clearAll()">Clear</button>
+        </div>
+        <div class="listwrap" id="listwrap">
+          <div class="lhead"><span><b id="count">0</b> images (drag order with ▲▼)</span><span id="totals"></span></div>
+          <div class="flist" id="list"></div>
+        </div>
+        <p class="status" id="status"></p>
+      </div>
+      <div class="related">
+        <a href="/png-to-jpg">PNG → JPG</a>
+        <a href="/heic-to-jpg">HEIC → JPG</a>
+        <a href="/batch">Bulk convert</a>
+        <a href="/">All image tools</a>
+      </div>
+    </div>
+    <!-- AD-SLOT:Mid | AdSense 승인 후 교체 -->
+    <div class="ad-slot">Advertisement</div>
+    <section class="seo">
+      <h2>Turn images into a PDF — the easy way</h2>
+      <p>Need to send photos, scans, or screenshots as one tidy file? This <strong>image to PDF</strong> tool combines any number of JPG or PNG images (plus WebP, GIF and BMP) into a single PDF, in the exact order you arrange them. It's perfect for receipts, ID scans, homework, or a quick photo album — and everything is built locally, so your images never leave your device.</p>
+      <h2>How to convert images to PDF</h2>
+      <ul>
+        <li>Drop your <strong>images</strong> into the box above (or click to browse). Add as many as you like and reorder them with the ▲▼ buttons.</li>
+        <li>Pick a <strong>page size</strong> (Fit-to-image keeps each image full-bleed; A4/Letter add a clean page), orientation, and margin.</li>
+        <li>Click <strong>Create PDF</strong> — your PDF downloads instantly, one image per page.</li>
+      </ul>
+      <h2>Frequently asked questions</h2>
+      <p class="faq-q">Are my images uploaded?</p>
+      <p>No. The PDF is assembled entirely in your browser with the open-source jsPDF library. <strong>Nothing is uploaded</strong> — there's no server and no account.</p>
+      <p class="faq-q">Does it work for JPG and PNG?</p>
+      <p>Yes — "image to PDF", "JPG to PDF" and "PNG to PDF" all use this same tool. WebP, GIF and BMP work too; each image is placed on its own page.</p>
+      <p class="faq-q">Can I put several images on one PDF?</p>
+      <p>That's exactly what it's for. Add multiple images, arrange the order, and they're merged into a single multi-page PDF.</p>
+    </section>
+  </main>
+  <footer>
+    <p>ImageTools — free, private, browser-based image utilities. Your files never leave your device.</p>
+    <div class="links"><a href="/">All tools</a><a href="/png-to-jpg">PNG to JPG</a><a href="/batch">Bulk convert</a></div>
+  </footer>
+  <script>
+    "use strict";
+    var items = [];
+    function $(id){ return document.getElementById(id); }
+    function setStatus(msg,type,spin){ var el=$('status'); el.innerHTML=(spin?'<span class="spin"></span>':'')+msg; el.className='status'+(type?' '+type:''); }
+    function fmtBytes(b){ if(b===0||b==null)return '0 B'; var k=1024,u=['B','KB','MB','GB'],i=Math.min(Math.floor(Math.log(b)/Math.log(k)),u.length-1); return (b/Math.pow(k,i)).toFixed(i===0?0:(b/Math.pow(k,i)>=100?0:1))+' '+u[i]; }
+    function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    function render(){
+      var html='';
+      for(var i=0;i<items.length;i++){ var it=items[i];
+        html += '<div class="frow"><img class="th" src="'+it.url+'" alt=""><span class="fn">'+esc(it.name)+'</span>'+
+                '<span class="ord"><button onclick="move('+i+',-1)" title="Up">▲</button><button onclick="move('+i+',1)" title="Down">▼</button></span>'+
+                '<button class="rm" onclick="removeAt('+i+')" title="Remove">×</button></div>';
+      }
+      $('list').innerHTML=html;
+      $('count').textContent=items.length;
+      $('listwrap').classList.toggle('show', items.length>0);
+      $('go').disabled = items.length===0;
+      var tot=items.reduce(function(a,it){return a+it.size;},0);
+      $('totals').textContent = items.length? fmtBytes(tot) : '';
+    }
+    function loadImage(file){ return new Promise(function(res,rej){ var r=new FileReader(); r.onerror=rej; r.onload=function(e){ var im=new Image(); im.onload=function(){ res({img:im,url:e.target.result}); }; im.onerror=rej; im.src=e.target.result; }; r.readAsDataURL(file); }); }
+    function addFiles(fl){
+      var arr=[].slice.call(fl).filter(function(f){ return f.type.startsWith('image/') || /\.(png|jpe?g|webp|gif|bmp)$/i.test(f.name); });
+      if(!arr.length) return;
+      setStatus('Reading '+arr.length+' image(s)…','',true);
+      Promise.all(arr.map(function(f){ return loadImage(f).then(function(o){ return {name:f.name, size:f.size, w:o.img.naturalWidth, h:o.img.naturalHeight, img:o.img, url:o.url}; }); }))
+        .then(function(loaded){ loaded.forEach(function(o){ items.push(o); }); $('ctrl').classList.add('show'); render(); setStatus('Added '+loaded.length+' image(s). Arrange and click Create PDF.','ok'); })
+        .catch(function(){ setStatus('Could not read one of the files. Try different images.','error'); });
+    }
+    function move(i,dir){ var j=i+dir; if(j<0||j>=items.length) return; var t=items[i]; items[i]=items[j]; items[j]=t; render(); }
+    function removeAt(i){ items.splice(i,1); render(); if(!items.length){ $('ctrl').classList.remove('show'); } }
+    function clearAll(){ items=[]; $('ctrl').classList.remove('show'); $('file').value=''; setStatus('',''); render(); }
+
+    var drop=$('drop'), input=$('file');
+    input.addEventListener('change', function(){ if(input.files&&input.files.length) addFiles(input.files); input.value=''; });
+    ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.add('drag'); }); });
+    ['dragleave','dragend','drop'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.remove('drag'); }); });
+    drop.addEventListener('drop', function(e){ var f=e.dataTransfer&&e.dataTransfer.files; if(f&&f.length) addFiles(f); });
+
+    function toJpeg(it){
+      var c=document.createElement('canvas'); c.width=it.w; c.height=it.h;
+      var x=c.getContext('2d'); x.fillStyle='#ffffff'; x.fillRect(0,0,it.w,it.h); x.drawImage(it.img,0,0);
+      return c.toDataURL('image/jpeg',0.92);
+    }
+    function createPdf(){
+      if(!items.length) return;
+      var ns=window.jspdf; if(!ns||!ns.jsPDF){ setStatus('PDF library failed to load — check your connection and reload.','error'); return; }
+      $('go').disabled=true; setStatus('Building PDF…','',true);
+      setTimeout(function(){
+        try{
+          var sizeSel=$('psize').value, orientSel=$('orient').value, margin=parseInt($('margin').value,10)||0;
+          var doc=null;
+          for(var i=0;i<items.length;i++){
+            var it=items[i];
+            var landscapeImg = it.w >= it.h;
+            var orient = orientSel==='auto' ? (landscapeImg?'l':'p') : orientSel;
+            var format, pw, ph;
+            if(sizeSel==='fit'){ format=[it.w, it.h]; orient = landscapeImg?'l':'p'; }
+            else { format = sizeSel; }
+            if(i===0){ doc=new ns.jsPDF({unit:'pt', format:format, orientation:orient}); }
+            else { doc.addPage(format, orient); }
+            pw=doc.internal.pageSize.getWidth(); ph=doc.internal.pageSize.getHeight();
+            var availW=pw-2*margin, availH=ph-2*margin;
+            var ratio=Math.min(availW/it.w, availH/it.h);
+            var w=it.w*ratio, h=it.h*ratio;
+            var dx=(pw-w)/2, dy=(ph-h)/2;
+            var jpeg=toJpeg(it);
+            doc.addImage(jpeg, 'JPEG', dx, dy, w, h);
+          }
+          doc.save('images.pdf');
+          setStatus('✓ Created a '+items.length+'-page PDF. Saved as images.pdf.','ok');
+          try{ gtag('event','image_to_pdf',{pages:items.length}); }catch(e){}
+        }catch(err){ setStatus('Could not build the PDF. Try fewer or smaller images.','error'); }
+        $('go').disabled=false;
+      }, 30);
+    }
+    window.createPdf=createPdf; window.clearAll=clearAll; window.move=move; window.removeAt=removeAt;
+  </script>
+</body>
+</html>

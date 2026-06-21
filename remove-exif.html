@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remove EXIF Data from Photos — Strip Metadata &amp; GPS, Free &amp; Private | ImageTools</title>
+  <meta name="description" content="Remove EXIF metadata — including GPS location, camera info and date — from your photos. See exactly what's hidden, then download a clean copy. No uploads; everything runs in your browser.">
+  <meta name="keywords" content="remove exif, remove metadata from photo, strip exif data, remove gps from photo, exif remover, clear photo metadata, remove location from photo">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Remove EXIF Data from Photos — Free & Private">
+  <meta property="og:description" content="See and strip the hidden GPS, camera and date metadata in your photos. Nothing uploaded, no signup.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <script>(function(){var l=document.createElement('link');l.rel='canonical';l.href="https://image.quietools.com"+location.pathname;document.head.appendChild(l);})();</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9QKMV5JQL5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9QKMV5JQL5');
+  </script>
+  <!-- exifr — reads the metadata so we can show what's hidden; everything stays in the browser -->
+  <script src="https://cdn.jsdelivr.net/npm/exifr/dist/full.umd.js"></script>
+  <style>
+    :root{--bg:#f6f8fc;--panel:#ffffff;--panel-2:#f1f4fa;--border:#e2e8f3;--border-strong:#cdd6e8;--text:#1a2233;--muted:#6b7689;--accent:#5b6cff;--accent-2:#7c4dff;--accent-soft:#eef0ff;--err:#e5484d;--warn:#c2660a;--warn-bg:#fff4e5;--ok:#1f9d55;--shadow:0 1px 3px rgba(20,30,60,.06),0 8px 24px rgba(20,30,60,.06);}
+    @media (prefers-color-scheme: dark){:root{--bg:#0f1320;--panel:#171c2c;--panel-2:#1e2435;--border:#2a3145;--border-strong:#39415a;--text:#e8ecf5;--muted:#9aa4ba;--accent:#7c8bff;--accent-2:#a98bff;--accent-soft:#222a45;--err:#ff6b6b;--warn:#ffb454;--warn-bg:#2c2310;--ok:#4ade80;--shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);}}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    header{border-bottom:1px solid var(--border);padding:.85rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:var(--panel)}
+    .logo{font-size:1.15rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:.5rem;letter-spacing:-.01em}
+    .logo .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:.95rem}
+    .logo span{color:var(--accent)}
+    .priv-pill{font-size:.72rem;font-weight:600;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent);border:1px solid color-mix(in srgb,var(--ok) 30%,transparent);padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+    main{max-width:860px;margin:0 auto;padding:1.5rem 1.25rem 0}
+    .crumb{font-size:.82rem;color:var(--muted);margin-bottom:1rem}
+    .hero{text-align:center;padding:.5rem 0 .25rem}
+    h1{font-size:1.9rem;margin-bottom:.5rem;letter-spacing:-.02em;line-height:1.2}
+    .hero .lead{color:var(--muted);max-width:600px;margin:0 auto;font-size:1.01rem}
+    .ad-slot{margin:1.5rem 0;min-height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;border:1px dashed var(--border-strong);border-radius:12px;background:var(--panel-2)}
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:1.5rem;box-shadow:var(--shadow);margin-top:1rem}
+    .drop{display:block;border:2px dashed var(--border-strong);border-radius:14px;padding:2.25rem 1rem;text-align:center;cursor:pointer;transition:.18s;background:var(--panel-2);position:relative}
+    .drop:hover,.drop.drag{border-color:var(--accent);background:var(--accent-soft)}
+    .drop .big{font-size:2.2rem;line-height:1;margin-bottom:.6rem}
+    .drop .t{font-weight:600;margin-bottom:.25rem}
+    .drop .s{color:var(--muted);font-size:.85rem}
+    .drop input[type=file]{display:none}
+    .controls{margin-top:1.25rem;display:none}.controls.show{display:block}
+    .work{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:1.1rem;align-items:start}
+    @media(max-width:620px){.work{grid-template-columns:1fr}}
+    .imgcard{background:var(--panel-2);border:1px solid var(--border);border-radius:12px;padding:.75rem;text-align:center}
+    .imgcard img{max-width:100%;max-height:300px;border-radius:8px;display:none}
+    .metacard{background:var(--panel-2);border:1px solid var(--border);border-radius:12px;padding:.4rem .9rem}
+    .warn{display:none;background:var(--warn-bg);border:1px solid color-mix(in srgb,var(--warn) 40%,transparent);color:var(--warn);border-radius:9px;padding:.6rem .8rem;font-size:.86rem;font-weight:600;margin:.6rem 0}
+    .mrow{display:flex;justify-content:space-between;gap:1rem;padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.88rem}
+    .mrow:last-child{border-bottom:none}
+    .mrow .k{color:var(--muted);font-weight:600;white-space:nowrap}
+    .mrow .v{color:var(--text);text-align:right;word-break:break-word;font-variant-numeric:tabular-nums}
+    .mrow.gps .k,.mrow.gps .v{color:var(--warn);font-weight:700}
+    .mrow.ok{color:var(--ok);font-weight:600;justify-content:flex-start}
+    .mrow.muted{color:var(--muted);justify-content:flex-start}
+    .actions{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:1.1rem}
+    button.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border:none;border-radius:10px;padding:.7rem 1.4rem;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+    button.primary:hover{filter:brightness(1.05)}button.primary:disabled{opacity:.5;cursor:not-allowed;filter:none}
+    button.ghost{background:var(--panel-2);color:var(--text);border:1px solid var(--border-strong);border-radius:10px;padding:.7rem 1.1rem;font-size:.92rem;font-weight:600;cursor:pointer}
+    .status{margin:1rem 0 0;font-size:.9rem;min-height:1.3em}
+    .status.error{color:var(--err);font-weight:600}.status.ok{color:var(--ok);font-weight:600}
+    .spin{display:inline-block;width:.85em;height:.85em;border:2px solid color-mix(in srgb,var(--accent) 35%,transparent);border-top-color:var(--accent);border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px;margin-right:.4rem}
+    @keyframes sp{to{transform:rotate(360deg)}}
+    .related{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+    .related a{font-size:.85rem;background:var(--panel);border:1px solid var(--border-strong);border-radius:999px;padding:.4rem .85rem;color:var(--text)}
+    .related a:hover{border-color:var(--accent);text-decoration:none}
+    .seo{margin-top:2.5rem;border-top:1px solid var(--border);padding-top:1.75rem}
+    .seo h2{font-size:1.25rem;margin:1.5rem 0 .5rem;letter-spacing:-.01em}.seo h2:first-child{margin-top:0}
+    .seo p,.seo li{color:var(--muted);margin-bottom:.5rem}.seo ul{margin:0 0 .5rem 1.25rem}.seo strong{color:var(--text)}
+    .faq-q{font-weight:700;color:var(--text);margin-top:.75rem}
+    footer{border-top:1px solid var(--border);padding:2rem 1.25rem;text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem}
+    footer .links{margin-top:.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" class="logo"><span class="mark">◩</span>Image<span>Tools</span></a>
+    <span class="priv-pill">🔒 100% in your browser</span>
+  </header>
+  <main>
+    <p class="crumb"><a href="/">Home</a> › Remove EXIF</p>
+    <section class="hero">
+      <h1>Remove EXIF Data from Photos</h1>
+      <p class="lead">See the hidden metadata in your photo — GPS location, camera, date — then download a clean copy with it all stripped out. No uploads; everything happens on your device.</p>
+    </section>
+    <!-- AD-SLOT:Top | AdSense 승인 후 교체 -->
+    <div class="ad-slot">Advertisement</div>
+    <div class="panel">
+      <label class="drop" id="drop">
+        <div class="big">🧹</div>
+        <div class="t">Drop a photo here or click to browse</div>
+        <div class="s">JPG, PNG or WebP — your photo never leaves your device</div>
+        <input type="file" id="file" accept="image/*">
+      </label>
+      <div class="controls" id="ctrl">
+        <div class="warn" id="warn">📍 Heads up: this photo contains your <strong>GPS location</strong>. Anyone you share the original with can see where it was taken.</div>
+        <div class="work">
+          <div class="imgcard"><img id="preview" alt="Your photo"></div>
+          <div class="metacard" id="meta"></div>
+        </div>
+        <div class="actions">
+          <button class="primary" id="go" onclick="removeAndDownload()">Remove metadata &amp; download</button>
+          <button class="ghost" onclick="reset()">Choose another</button>
+        </div>
+        <p class="status" id="status"></p>
+      </div>
+      <div class="related">
+        <a href="/heic-to-jpg">HEIC → JPG</a>
+        <a href="/batch">Bulk convert</a>
+        <a href="/png-to-jpg">PNG → JPG</a>
+        <a href="/">All image tools</a>
+      </div>
+    </div>
+    <!-- AD-SLOT:Mid | AdSense 승인 후 교체 -->
+    <div class="ad-slot">Advertisement</div>
+    <section class="seo">
+      <h2>What is EXIF data — and why remove it?</h2>
+      <p>Most photos carry hidden <strong>EXIF metadata</strong>: the camera and lens, the date and time, settings like ISO and shutter speed, and — most sensitively — the <strong>GPS coordinates</strong> of where the picture was taken. When you post or send a photo, that data can travel with it, quietly revealing your home, workplace, or routine. Removing EXIF before sharing protects your privacy.</p>
+      <h2>How to remove EXIF metadata</h2>
+      <ul>
+        <li>Drop your photo above. The tool instantly reads and <strong>shows you</strong> the metadata it found, with GPS flagged in orange.</li>
+        <li>Click <strong>Remove metadata &amp; download</strong>. The image is re-encoded locally, which strips every EXIF tag while keeping the picture itself unchanged.</li>
+        <li>Share the <strong>clean copy</strong> instead of the original — it carries no location, camera, or date data.</li>
+      </ul>
+      <h2>Frequently asked questions</h2>
+      <p class="faq-q">Is my photo uploaded to read the metadata?</p>
+      <p>No. The metadata is read in your browser with the open-source exifr library, and the clean copy is produced with an HTML <code>&lt;canvas&gt;</code>. <strong>Nothing is uploaded</strong> — no server, no account.</p>
+      <p class="faq-q">Does removing EXIF change how the photo looks?</p>
+      <p>No visible change. Re-encoding applies the original rotation so the picture stays upright, and at high quality the pixels look the same — only the hidden tags are gone.</p>
+      <p class="faq-q">Which formats are supported?</p>
+      <p>JPG, PNG, and WebP. EXIF is most common in JPGs straight from a phone or camera; the clean copy is saved in the same format you uploaded.</p>
+    </section>
+  </main>
+  <footer>
+    <p>ImageTools — free, private, browser-based image utilities. Your files never leave your device.</p>
+    <div class="links"><a href="/">All tools</a><a href="/heic-to-jpg">HEIC to JPG</a><a href="/batch">Bulk convert</a></div>
+  </footer>
+  <script>
+    "use strict";
+    var file=null, name="image", mime="image/jpeg", lastUrl=null, prevUrl=null;
+    function $(id){ return document.getElementById(id); }
+    function setStatus(msg,type,spin){ var el=$('status'); el.innerHTML=(spin?'<span class="spin"></span>':'')+msg; el.className='status'+(type?' '+type:''); }
+    function fmtBytes(b){ if(b===0||b==null)return '0 B'; var k=1024,u=['B','KB','MB','GB'],i=Math.min(Math.floor(Math.log(b)/Math.log(k)),u.length-1); return (b/Math.pow(k,i)).toFixed(i===0?0:(b/Math.pow(k,i)>=100?0:1))+' '+u[i]; }
+    function baseName(n){ return (n||'image').replace(/\.[^.]+$/, ''); }
+    function extFor(m){ return m==='image/png'?'png':m==='image/webp'?'webp':'jpg'; }
+    function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    function loadFile(f){
+      if(!f) return;
+      if(!f.type.startsWith('image/') && !/\.(png|jpe?g|webp|gif|bmp|tiff?)$/i.test(f.name)){ setStatus('Please choose an image (JPG, PNG or WebP).','error'); return; }
+      file=f; name=baseName(f.name); mime=(f.type==='image/png'||f.type==='image/webp')?f.type:'image/jpeg';
+      $('ctrl').classList.add('show');
+      if(prevUrl){ try{URL.revokeObjectURL(prevUrl);}catch(e){} }
+      prevUrl=URL.createObjectURL(f); var pv=$('preview'); pv.src=prevUrl; pv.style.display='block';
+      $('warn').style.display='none'; $('meta').innerHTML='';
+      setStatus('Reading metadata…','',true);
+      readMeta(f);
+    }
+    function readMeta(f){
+      if(typeof exifr==='undefined'){ setTimeout(function(){ readMeta(f); }, 400); return; }
+      exifr.parse(f, { tiff:true, ifd0:true, exif:true, gps:true }).then(function(md){ renderMeta(md||{}); }).catch(function(){ renderMeta({}); });
+    }
+    function renderMeta(md){
+      var rows=[], hasGps=false;
+      if(typeof md.latitude==='number' && typeof md.longitude==='number'){
+        hasGps=true;
+        var la=md.latitude.toFixed(6), lo=md.longitude.toFixed(6);
+        rows.push('<div class="mrow gps"><span class="k">📍 GPS location</span><span class="v">'+la+', '+lo+' &nbsp;<a href="https://www.google.com/maps?q='+md.latitude+','+md.longitude+'" target="_blank" rel="noopener">map ↗</a></span></div>');
+      }
+      function add(k,v){ if(v!=null && v!==''){ rows.push('<div class="mrow"><span class="k">'+k+'</span><span class="v">'+esc(String(v))+'</span></div>'); } }
+      add('Camera', [md.Make, md.Model].filter(Boolean).join(' '));
+      add('Lens', md.LensModel);
+      var d = md.DateTimeOriginal || md.CreateDate || md.ModifyDate;
+      add('Date taken', d ? (d instanceof Date ? d.toLocaleString() : String(d)) : '');
+      add('Software', md.Software);
+      if(md.ExposureTime){ add('Shutter', md.ExposureTime<1 ? '1/'+Math.round(1/md.ExposureTime)+'s' : md.ExposureTime+'s'); }
+      add('Aperture', md.FNumber ? ('f/'+md.FNumber) : '');
+      add('ISO', md.ISO);
+      add('Focal length', md.FocalLength ? (md.FocalLength+'mm') : '');
+      add('Orientation', md.Orientation);
+      if(rows.length===0){
+        $('meta').innerHTML='<div class="mrow ok">✓ No EXIF metadata found — this image is already clean.</div>';
+        $('warn').style.display='none';
+        setStatus('No metadata to remove — but you can still re-save a clean copy.','ok');
+      } else {
+        $('meta').innerHTML=rows.join('');
+        $('warn').style.display = hasGps ? 'block' : 'none';
+        setStatus('Found '+rows.length+' metadata field(s) below. Click "Remove metadata & download" for a clean copy.', hasGps?'error':'');
+      }
+    }
+    var drop=$('drop'), input=$('file');
+    input.addEventListener('change', function(){ if(input.files[0]) loadFile(input.files[0]); });
+    ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.add('drag'); }); });
+    ['dragleave','dragend','drop'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.remove('drag'); }); });
+    drop.addEventListener('drop', function(e){ var f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0]; if(f) loadFile(f); });
+    function removeAndDownload(){
+      if(!file){ setStatus('Please choose a photo first.','error'); return; }
+      var im=new Image();
+      im.onload=function(){
+        var canvas=document.createElement('canvas'); canvas.width=im.naturalWidth; canvas.height=im.naturalHeight;
+        var ctx=canvas.getContext('2d');
+        if(mime==='image/jpeg'){ ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,canvas.width,canvas.height); }
+        ctx.drawImage(im,0,0);
+        canvas.toBlob(function(blob){
+          if(!blob){ setStatus('Could not process this image.','error'); return; }
+          if(lastUrl){ try{URL.revokeObjectURL(lastUrl);}catch(e){} }
+          var url=URL.createObjectURL(blob); lastUrl=url;
+          var a=document.createElement('a'); a.href=url; a.download=name+'-clean.'+extFor(mime); document.body.appendChild(a); a.click(); a.remove();
+          setStatus('✓ Downloaded a clean copy ('+fmtBytes(blob.size)+') — all EXIF metadata removed.','ok');
+          try{ gtag('event','remove_exif'); }catch(e){}
+        }, mime, 0.95);
+      };
+      im.onerror=function(){ setStatus('Could not load the image to clean it.','error'); };
+      im.src = prevUrl || URL.createObjectURL(file);
+    }
+    function reset(){ file=null; name='image'; $('ctrl').classList.remove('show'); $('file').value=''; $('preview').style.display='none'; $('meta').innerHTML=''; $('warn').style.display='none'; setStatus('',''); }
+    window.removeAndDownload=removeAndDownload; window.reset=reset;
+  </script>
+</body>
+</html>
