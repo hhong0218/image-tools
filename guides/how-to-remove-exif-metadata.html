@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){if(location.hostname.indexOf(".pages.dev")>-1){location.replace("https://image.quietools.com"+location.pathname+location.search+location.hash);}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Remove EXIF Data From Photos (Privacy Guide) | ImageTools Guides</title>
+  <link rel="canonical" href="https://image.quietools.com/guides/how-to-remove-exif-metadata.html">
+  <meta name="description" content="Photos secretly carry EXIF metadata — including GPS location. Learn what EXIF is, why it's a privacy risk, and how to strip it before you share, for free.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#5b6cff">
+  <meta property="og:title" content="How to Remove EXIF Data From Photos (Privacy Guide)">
+  <meta property="og:description" content="What EXIF metadata is, why it's a privacy risk, and how to strip it before sharing photos.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://image.quietools.com/guides/how-to-remove-exif-metadata.html">
+  <meta name="twitter:card" content="summary">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9QKMV5JQL5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9QKMV5JQL5');
+  </script>
+  <style>
+    :root{--bg:#f6f8fc;--panel:#ffffff;--panel-2:#f1f4fa;--border:#e2e8f3;--border-strong:#cdd6e8;--text:#1a2233;--muted:#6b7689;--accent:#5b6cff;--accent-2:#7c4dff;--accent-soft:#eef0ff;--err:#e5484d;--ok:#1f9d55;--shadow:0 1px 3px rgba(20,30,60,.06),0 8px 24px rgba(20,30,60,.06);}
+    @media (prefers-color-scheme: dark){:root{--bg:#0f1320;--panel:#171c2c;--panel-2:#1e2435;--border:#2a3145;--border-strong:#39415a;--text:#e8ecf5;--muted:#9aa4ba;--accent:#7c8bff;--accent-2:#a98bff;--accent-soft:#222a45;--err:#ff6b6b;--ok:#4ade80;--shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);}}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    header{border-bottom:1px solid var(--border);padding:.85rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:var(--panel)}
+    .logo{font-size:1.15rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:.5rem;letter-spacing:-.01em}
+    .logo .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:.95rem}
+    .logo span{color:var(--accent)}
+    nav{display:flex;align-items:center;gap:1rem}
+    nav a{font-weight:600;font-size:.92rem}
+    .priv-pill{font-size:.72rem;font-weight:600;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent);border:1px solid color-mix(in srgb,var(--ok) 30%,transparent);padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+    main{max-width:760px;margin:0 auto;padding:1.5rem 1.25rem 0}
+    .crumb{font-size:.82rem;color:var(--muted);margin-bottom:1rem}
+    article h1{font-size:2rem;margin:.25rem 0 .6rem;letter-spacing:-.02em;line-height:1.2}
+    article .lead{color:var(--muted);font-size:1.05rem;margin-bottom:1.5rem}
+    article h2{font-size:1.3rem;margin:1.75rem 0 .6rem;letter-spacing:-.01em}
+    article h3{font-size:1.05rem;margin:1.25rem 0 .4rem}
+    article p,article li{margin-bottom:.7rem}
+    article ul,article ol{margin:0 0 .7rem 1.4rem}
+    article strong{color:var(--text)}
+    article code{background:var(--panel-2);border:1px solid var(--border);border-radius:5px;padding:.1rem .4rem;font-family:'SFMono-Regular',Consolas,monospace;font-size:.85em}
+    .cta{display:block;background:var(--panel);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:12px;padding:1.1rem 1.25rem;margin:1.75rem 0;box-shadow:var(--shadow)}
+    .cta .t{font-weight:700;margin-bottom:.2rem}
+    .cta .btn{display:inline-block;margin-top:.6rem;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border-radius:10px;padding:.6rem 1.2rem;font-weight:700;font-size:.95rem}
+    .cta .btn:hover{filter:brightness(1.05);text-decoration:none}
+    table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.92rem}
+    th,td{border:1px solid var(--border);padding:.6rem .7rem;text-align:left;vertical-align:top}
+    th{background:var(--panel-2);font-weight:700}
+    .related{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.5rem 0}
+    .related a{background:var(--panel);border:1px solid var(--border-strong);border-radius:9px;padding:.5rem .9rem;font-weight:600;font-size:.9rem}
+    .related a:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+    footer{border-top:1px solid var(--border);padding:2rem 1.25rem;text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem}
+    footer .links{margin-top:.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" class="logo"><span class="mark">◩</span>Image<span>Tools</span></a>
+    <nav>
+      <a href="/guides/">Guides</a>
+      <span class="priv-pill">🔒 100% in your browser</span>
+    </nav>
+  </header>
+  <main>
+    <p class="crumb"><a href="/">Home</a> › <a href="/guides/">Guides</a> › How to remove EXIF metadata</p>
+    <article>
+      <h1>How to Remove EXIF Data From Photos</h1>
+      <p class="lead">Every photo you take quietly records hidden information about it — including, very often, the exact GPS coordinates where it was shot. Before you post that picture publicly, here's why you should strip that data, and how to do it in seconds.</p>
+
+      <h2>What is EXIF data?</h2>
+      <p>EXIF (Exchangeable Image File Format) is metadata your camera or phone embeds inside every JPG and HEIC photo. It's invisible when you look at the picture, but it's right there in the file. Typical EXIF fields include:</p>
+      <ul>
+        <li><strong>GPS coordinates</strong> — the precise latitude and longitude where the photo was taken.</li>
+        <li><strong>Date and time</strong> — down to the second.</li>
+        <li><strong>Device info</strong> — camera or phone make and model.</li>
+        <li><strong>Camera settings</strong> — exposure, aperture, ISO, focal length, whether the flash fired.</li>
+        <li><strong>Software</strong> — what edited the photo, sometimes including your name or device account.</li>
+      </ul>
+
+      <h2>Why EXIF is a real privacy risk</h2>
+      <p>The dangerous one is location. A photo taken in your living room and posted online can carry the GPS coordinates of your home. Pictures of children, a "for sale" item shot in your driveway, or a casual selfie can all reveal exactly where you live, work, or spend time. There have been documented cases of people being located through the GPS tags in photos they shared publicly.</p>
+      <p>It's worth knowing that <strong>major social networks usually strip EXIF on upload</strong> — but not all of them, not always, and certainly not when you email a file, send it over a messaging app, post it to a forum, or attach it to a marketplace listing. The only safe assumption is that the metadata travels with the file unless you remove it yourself.</p>
+
+      <div class="cta">
+        <div class="t">Strip metadata now</div>
+        <div>Remove EXIF, GPS, and other hidden data from a photo — privately, in your browser.</div>
+        <a class="btn" href="/remove-exif.html">Remove EXIF data now →</a>
+      </div>
+
+      <h2>How to remove EXIF data (the private way)</h2>
+      <p>The catch with most "EXIF remover" websites is that you have to upload your photo to their server — which is the opposite of private. Our tool does it locally: it redraws the image onto a clean HTML canvas and re-exports it, which produces a fresh file with <strong>none of the original metadata</strong>. Your photo never leaves your device.</p>
+      <ol>
+        <li>Open the <a href="/remove-exif.html">EXIF remover</a>.</li>
+        <li>Drop in your photo (JPG, PNG, or WebP).</li>
+        <li>Download the cleaned copy. The GPS tag, timestamp, and device details are gone.</li>
+      </ol>
+      <p>Because the tool re-renders the pixels rather than parsing and editing the metadata, the output is guaranteed clean — there's no leftover hidden block for someone to dig out later.</p>
+
+      <h2>A note on quality</h2>
+      <p>Re-exporting a JPG involves one more lossy save, so use a high quality setting if the image matters. For most sharing purposes the difference is invisible. If you also want a smaller file, read our <a href="/guides/compress-images-without-losing-quality.html">compression guide</a> — and if you're working with iPhone photos, our <a href="/guides/how-to-convert-heic-to-jpg.html">HEIC to JPG guide</a> pairs well with this one.</p>
+
+      <h2>Frequently asked questions</h2>
+      <h3>Does removing EXIF change how the photo looks?</h3>
+      <p>No. EXIF is invisible metadata; stripping it leaves the visible image unchanged (aside from one extra compression pass on re-export).</p>
+      <h3>Do social media sites already remove EXIF?</h3>
+      <p>Many do on upload, but behavior varies and email, messaging, forums, and file shares typically keep it. Strip it yourself to be sure.</p>
+      <h3>Is the photo uploaded to remove the data?</h3>
+      <p>No. Our tool processes the image entirely in your browser, so the file — and its location data — never leaves your device.</p>
+
+      <div class="related">
+        <a href="/remove-exif.html">Remove EXIF tool</a>
+        <a href="/guides/how-to-convert-heic-to-jpg.html">HEIC → JPG guide</a>
+        <a href="/guides/compress-images-without-losing-quality.html">Compression guide</a>
+        <a href="/guides/">All guides</a>
+      </div>
+    </article>
+  </main>
+  <footer>
+    <p>ImageTools — free, private, browser-based image utilities. Your files never leave your device.</p>
+    <div class="links"><a href="/">All tools</a><a href="/guides/">Guides</a><a href="/remove-exif.html">Remove EXIF</a></div>
+  </footer>
+</body>
+</html>

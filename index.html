@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Tools — Free Online Resizer, Compressor &amp; Converter | ImageTools</title>
+  <link rel="canonical" href="https://image.quietools.com/">
   <meta name="description" content="Free online image tools: resize, compress, and convert images (PNG, JPG, WebP) right in your browser. No uploads, no signup — everything runs locally and privately on your device.">
   <meta name="keywords" content="image resizer, compress image, png to jpg, webp converter, resize image online, image converter, reduce image size">
   <meta name="robots" content="index, follow">
@@ -12,6 +13,7 @@
   <meta property="og:title" content="Image Tools — Free Online Resizer, Compressor & Converter">
   <meta property="og:description" content="Resize, compress, and convert images instantly in your browser. No uploads, no signup — 100% private.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://image.quietools.com/">
   <meta name="twitter:card" content="summary">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9QKMV5JQL5"></script>
@@ -121,11 +123,14 @@
     footer .links{margin-top:.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
   </style>
-<script>(function(){var l=document.createElement('link');l.rel='canonical';l.href="https://image.quietools.com"+location.pathname;document.head.appendChild(l);})();</script></head>
+</head>
 <body>
   <header>
     <a href="/" class="logo"><span class="mark">◩</span>Image<span>Tools</span></a>
-    <span class="priv-pill">🔒 100% in your browser</span>
+    <nav style="display:flex;align-items:center;gap:1rem">
+      <a href="/guides/" style="font-weight:600;font-size:.92rem">Guides</a>
+      <span class="priv-pill">🔒 100% in your browser</span>
+    </nav>
   </header>
 
   <main>
@@ -347,7 +352,74 @@
       <p class="faq-q">Is there a file size limit?</p>
       <p>There's no hard limit, but very large images (tens of megapixels) use more memory and may take a moment to process. Everything runs on your device's resources.</p>
     </section>
+
+    <section class="conv-sec" aria-label="Guides">
+      <h2>Guides &amp; how-tos</h2>
+      <p style="color:var(--muted);margin-bottom:.75rem;font-size:.92rem">Practical, no-fluff walkthroughs for the most common image jobs.</p>
+      <div class="conv-grid">
+        <a href="/guides/how-to-convert-heic-to-jpg.html">📱 How to convert HEIC to JPG</a>
+        <a href="/guides/compress-images-without-losing-quality.html">🗜️ Compress without losing quality</a>
+        <a href="/guides/webp-vs-png-vs-jpg.html">⚖️ WebP vs PNG vs JPG</a>
+        <a href="/guides/how-to-remove-exif-metadata.html">🔒 Remove EXIF metadata</a>
+        <a href="/guides/">📚 All guides</a>
+      </div>
+    </section>
+
+    <section class="seo" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Frequently asked questions</h2>
+      <p class="faq-q">Are these image tools free?</p>
+      <p>Yes — every tool here is completely free with no signup, no watermarks, and no usage limits. There's nothing to install and no paid tier hiding the useful features.</p>
+      <p class="faq-q">Are my images private? Do you upload them?</p>
+      <p>Nothing is uploaded. Every tool runs entirely in your browser using the Canvas API, so your images are processed locally and never sent to any server. You can even disconnect from the internet after the page loads and the tools still work.</p>
+      <p class="faq-q">Which image formats are supported?</p>
+      <p>You can resize, compress, and convert PNG, JPG/JPEG, and WebP, plus read GIF and BMP. Dedicated pages also handle HEIC (iPhone photos), image-to-PDF, and EXIF removal.</p>
+      <p class="faq-q">Is there a maximum file size?</p>
+      <p>There's no hard size limit. Very large images (tens of megapixels) simply use more of your device's memory and may take a moment to process, since all the work happens locally.</p>
+      <p class="faq-q">Do I need an account?</p>
+      <p>No account is ever required. Open the page, drop in an image, and download the result — there's no login, email, or registration step.</p>
+      <p class="faq-q">Will I lose quality when resizing or converting?</p>
+      <p>Resizing down and converting to PNG are visually lossless. Compressing to JPG or WebP uses lossy compression, so lower the quality slider only as far as the preview still looks good to you.</p>
+    </section>
   </main>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are these image tools free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — every tool here is completely free with no signup, no watermarks, and no usage limits. There's nothing to install and no paid tier hiding the useful features." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my images private? Do you upload them?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nothing is uploaded. Every tool runs entirely in your browser using the Canvas API, so your images are processed locally and never sent to any server. You can even disconnect from the internet after the page loads and the tools still work." }
+      },
+      {
+        "@type": "Question",
+        "name": "Which image formats are supported?",
+        "acceptedAnswer": { "@type": "Answer", "text": "You can resize, compress, and convert PNG, JPG/JPEG, and WebP, plus read GIF and BMP. Dedicated pages also handle HEIC (iPhone photos), image-to-PDF, and EXIF removal." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a maximum file size?",
+        "acceptedAnswer": { "@type": "Answer", "text": "There's no hard size limit. Very large images (tens of megapixels) simply use more of your device's memory and may take a moment to process, since all the work happens locally." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need an account?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No account is ever required. Open the page, drop in an image, and download the result — there's no login, email, or registration step." }
+      },
+      {
+        "@type": "Question",
+        "name": "Will I lose quality when resizing or converting?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Resizing down and converting to PNG are visually lossless. Compressing to JPG or WebP uses lossy compression, so lower the quality slider only as far as the preview still looks good to you." }
+      }
+    ]
+  }
+  </script>
 
   <footer>
     <p>ImageTools — free, private, browser-based image utilities. Your files never leave your device.</p>
