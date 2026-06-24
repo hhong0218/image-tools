@@ -213,6 +213,7 @@
           if(lastUrl){ try{URL.revokeObjectURL(lastUrl);}catch(e){} }
           var url=URL.createObjectURL(blob); lastUrl=url;
           var a=document.createElement('a'); a.href=url; a.download=name+'-clean.'+extFor(mime); document.body.appendChild(a); a.click(); a.remove();
+          if (typeof gtag === 'function') { gtag('event', 'image_convert', { tool: 'remove-exif' }); }
           setStatus('✓ Downloaded a clean copy ('+fmtBytes(blob.size)+') — all EXIF metadata removed.','ok');
           try{ gtag('event','remove_exif'); }catch(e){}
         }, mime, 0.95);

@@ -187,6 +187,7 @@
         var deltaHtml=(orig>0 && blob.size<=orig)?'<br><span class="delta">▼ '+pct+'% smaller</span>':'';
         $('pv-out-meta').innerHTML='<b>'+fmtBytes(blob.size)+'</b> · JPG'+deltaHtml;
         var dl=$('dl'); dl.href=url; dl.download=name+'.jpg';
+        if(!dl.dataset.gaBound){ dl.dataset.gaBound='1'; dl.addEventListener('click', function(){ if (typeof gtag === 'function') { gtag('event', 'image_convert', { tool: 'png-to-jpg' }); } }); }
         $('pv').style.display='grid';
         setStatus('✓ Converted to JPG ('+fmtBytes(blob.size)+'). Click Download JPG.','ok');
         try{ gtag('event','convert',{from:'png',to:'jpg'}); }catch(e){}

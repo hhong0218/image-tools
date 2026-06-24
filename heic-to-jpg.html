@@ -192,6 +192,7 @@
         var delta=(orig>0 && blob.size<=orig)?'<br><span class="delta">▼ '+pct+'% smaller</span>':'';
         $('out-meta').innerHTML='<b>'+fmtBytes(blob.size)+'</b> · '+TGT+delta;
         var dl=$('dl'); dl.href=url; dl.download=name+'.'+EXT;
+        if(!dl.dataset.gaBound){ dl.dataset.gaBound='1'; dl.addEventListener('click', function(){ if (typeof gtag === 'function') { gtag('event', 'image_convert', { tool: 'heic-to-jpg' }); } }); }
         setStatus('✓ Converted to '+TGT+' ('+fmtBytes(blob.size)+'). Click Download '+TGT+'.','ok');
         try{ gtag('event','convert',{from:'heic',to:'jpg'}); }catch(e){}
       }).catch(function(e){

@@ -231,6 +231,7 @@
             doc.addImage(jpeg, 'JPEG', dx, dy, w, h);
           }
           doc.save('images.pdf');
+          if (typeof gtag === 'function') { gtag('event', 'image_convert', { tool: 'image-to-pdf' }); }
           setStatus('✓ Created a '+items.length+'-page PDF. Saved as images.pdf.','ok');
           try{ gtag('event','image_to_pdf',{pages:items.length}); }catch(e){}
         }catch(err){ setStatus('Could not build the PDF. Try fewer or smaller images.','error'); }
