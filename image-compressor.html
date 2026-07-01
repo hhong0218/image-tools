@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){if(location.hostname.indexOf(".pages.dev")>-1){location.replace("https://image.quietools.com"+location.pathname+location.search+location.hash);}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Compressor — Reduce Image File Size Online, Free &amp; Private | ImageTools</title>
+  <link rel="canonical" href="https://image.quietools.com/image-compressor">
+  <meta name="description" content="Compress JPG, PNG or WebP images to reduce file size, with a live quality slider and before/after preview. No uploads, no signup — everything runs locally in your browser.">
+  <meta name="keywords" content="compress image online, reduce image file size, image compressor, compress jpg, compress png, shrink image size, image size reducer">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Image Compressor — Reduce File Size, Free &amp; Private">
+  <meta property="og:image" content="https://image.quietools.com/og-image.jpg">
+  <meta property="og:image:width" content="1376">
+  <meta property="og:image:height" content="768">
+  <meta name="twitter:image" content="https://image.quietools.com/og-image.jpg">
+  <meta property="og:description" content="Compress JPG, PNG or WebP images with a live quality slider. Nothing uploaded, no signup.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://image.quietools.com/image-compressor">
+  <meta name="twitter:card" content="summary">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9QKMV5JQL5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9QKMV5JQL5');
+  </script>
+  <style>
+    :root{--bg:#f6f8fc;--panel:#ffffff;--panel-2:#f1f4fa;--border:#e2e8f3;--border-strong:#cdd6e8;--text:#1a2233;--muted:#6b7689;--accent:#5b6cff;--accent-2:#7c4dff;--accent-soft:#eef0ff;--err:#e5484d;--warn:#c2660a;--warn-bg:#fff4e5;--ok:#1f9d55;--shadow:0 1px 3px rgba(20,30,60,.06),0 8px 24px rgba(20,30,60,.06);}
+    @media (prefers-color-scheme: dark){:root{--bg:#0f1320;--panel:#171c2c;--panel-2:#1e2435;--border:#2a3145;--border-strong:#39415a;--text:#e8ecf5;--muted:#9aa4ba;--accent:#7c8bff;--accent-2:#a98bff;--accent-soft:#222a45;--err:#ff6b6b;--warn:#ffb454;--warn-bg:#2c2310;--ok:#4ade80;--shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);}}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    header{border-bottom:1px solid var(--border);padding:.85rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:var(--panel)}
+    .logo{font-size:1.15rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:.5rem;letter-spacing:-.01em}
+    .logo .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:.95rem}
+    .logo span{color:var(--accent)}
+    .priv-pill{font-size:.72rem;font-weight:600;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent);border:1px solid color-mix(in srgb,var(--ok) 30%,transparent);padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+    main{max-width:860px;margin:0 auto;padding:1.5rem 1.25rem 0}
+    .crumb{font-size:.82rem;color:var(--muted);margin-bottom:1rem}
+    .hero{text-align:center;padding:.5rem 0 .25rem}
+    h1{font-size:1.9rem;margin-bottom:.5rem;letter-spacing:-.02em;line-height:1.2}
+    .hero .lead{color:var(--muted);max-width:600px;margin:0 auto;font-size:1.01rem}
+    .ad-slot{margin:1.5rem 0;min-height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;border:1px dashed var(--border-strong);border-radius:12px;background:var(--panel-2)}
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:1.5rem;box-shadow:var(--shadow);margin-top:1rem}
+    .drop{display:block;border:2px dashed var(--border-strong);border-radius:14px;padding:2.25rem 1rem;text-align:center;cursor:pointer;transition:.18s;background:var(--panel-2);position:relative}
+    .drop:hover,.drop.drag{border-color:var(--accent);background:var(--accent-soft)}
+    .drop .big{font-size:2.2rem;line-height:1;margin-bottom:.6rem}
+    .drop .t{font-weight:600;margin-bottom:.25rem}
+    .drop .s{color:var(--muted);font-size:.85rem}
+    .drop input[type=file]{display:none}
+    .controls{margin-top:1.25rem;display:none}.controls.show{display:block}
+    .sliderwrap{max-width:340px}
+    .sliderwrap .lab{display:flex;justify-content:space-between;font-size:.82rem;font-weight:600;color:var(--muted);margin-bottom:.35rem}
+    .sliderwrap .lab b{color:var(--accent)}
+    input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;height:6px}
+    input[type=range]:disabled{opacity:.4;cursor:not-allowed}
+    .note{display:none;background:var(--warn-bg);border:1px solid color-mix(in srgb,var(--warn) 40%,transparent);color:var(--warn);border-radius:9px;padding:.6rem .8rem;font-size:.83rem;font-weight:600;margin:.75rem 0 0}
+    .note.show{display:block}
+    .actions{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:1.1rem}
+    button.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border:none;border-radius:10px;padding:.7rem 1.4rem;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+    button.primary:hover{filter:brightness(1.05)}button.primary:disabled{opacity:.5;cursor:not-allowed;filter:none}
+    button.ghost{background:var(--panel-2);color:var(--text);border:1px solid var(--border-strong);border-radius:10px;padding:.7rem 1.1rem;font-size:.92rem;font-weight:600;cursor:pointer}
+    a.dl{display:inline-block;text-decoration:none}
+    .preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem}
+    @media(max-width:560px){.preview-grid{grid-template-columns:1fr}}
+    .pv{background:var(--panel-2);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center}
+    .pv h3{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:.6rem}
+    .pv .imgbox{background:repeating-conic-gradient(#0000 0% 25%, color-mix(in srgb,var(--muted) 12%,transparent) 0% 50%) 50% / 18px 18px;border-radius:8px;min-height:140px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .pv img{max-width:100%;max-height:240px;display:block;border-radius:6px}
+    .pv .meta{margin-top:.6rem;font-size:.85rem;color:var(--muted)}.pv .meta b{color:var(--text)}
+    .pv .delta{font-weight:700}
+    .pv .delta.down{color:var(--ok)}.pv .delta.up{color:var(--err)}
+    .status{margin:1rem 0 0;font-size:.9rem;min-height:1.3em}
+    .status.error{color:var(--err);font-weight:600}.status.ok{color:var(--ok);font-weight:600}
+    .related{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+    .related a{font-size:.85rem;background:var(--panel);border:1px solid var(--border-strong);border-radius:999px;padding:.4rem .85rem;color:var(--text)}
+    .related a:hover{border-color:var(--accent);text-decoration:none}
+    .seo{margin-top:2.5rem;border-top:1px solid var(--border);padding-top:1.75rem}
+    .seo h2{font-size:1.25rem;margin:1.5rem 0 .5rem;letter-spacing:-.01em}.seo h2:first-child{margin-top:0}
+    .seo p,.seo li{color:var(--muted);margin-bottom:.5rem}.seo ul{margin:0 0 .5rem 1.25rem}.seo strong{color:var(--text)}
+    .faq-q{font-weight:700;color:var(--text);margin-top:.75rem}
+    footer{border-top:1px solid var(--border);padding:2rem 1.25rem;text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem}
+    footer .links{margin-top:.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2324533526355362" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <a href="/" class="logo"><span class="mark">◩</span>Image<span>Tools</span></a>
+    <span class="priv-pill">🔒 100% in your browser</span>
+  </header>
+  <main>
+    <p class="crumb"><a href="/">Home</a> › Image Compressor</p>
+    <section class="hero">
+      <h1>Image Compressor</h1>
+      <p class="lead">Reduce the file size of a JPG, PNG, or WebP image while keeping the same format. Drag the quality slider and watch the size drop — no uploads, everything runs on your device.</p>
+    </section>
+    <!-- AD-SLOT:Top | AdSense 승인 후 교체 -->
+    <div class="ad-slot">Advertisement</div>
+    <div class="panel">
+      <label class="drop" id="drop">
+        <div class="big">🗜️</div>
+        <div class="t">Drop a JPG, PNG or WebP here or click to browse</div>
+        <div class="s">The output stays in the same format as your file</div>
+        <input type="file" id="file" accept="image/png,image/jpeg,image/webp">
+      </label>
+      <div class="controls" id="ctrl">
+        <div class="sliderwrap">
+          <div class="lab"><span>Quality</span><b id="qval">80%</b></div>
+          <input type="range" id="quality" min="10" max="100" value="80">
+        </div>
+        <p class="note" id="pngnote">ℹ️ PNG is lossless, so this quality slider has little effect on it — compression here mainly comes from re-encoding, not the slider. For much smaller files, try converting to <a href="/png-to-jpg">JPG</a> or <a href="/png-to-webp">WebP</a> instead.</p>
+        <div class="actions">
+          <button class="primary" id="go" onclick="compress()">Compress image</button>
+          <button class="ghost" onclick="reset()">Choose another</button>
+        </div>
+        <div class="preview-grid" id="pv" style="display:none">
+          <div class="pv"><h3>Original</h3><div class="imgbox"><img id="pv-orig" alt="Original preview"></div><div class="meta" id="pv-orig-meta"></div></div>
+          <div class="pv"><h3>Compressed</h3><div class="imgbox"><img id="pv-out" alt="Compressed preview"></div><div class="meta" id="pv-out-meta"></div>
+            <div class="actions" style="justify-content:center;margin-top:.75rem"><a id="dl" class="primary dl" download>⬇ Download</a></div>
+          </div>
+        </div>
+        <p class="status" id="status"></p>
+      </div>
+      <div class="related">
+        <a href="/guides/compress-images-without-losing-quality.html">📖 Guide: Compress without quality loss</a>
+        <a href="/image-resizer">Resize image</a>
+        <a href="/batch">Bulk convert</a>
+        <a href="/png-to-jpg">PNG → JPG</a>
+        <a href="/">All image tools</a>
+      </div>
+    </div>
+    <!-- AD-SLOT:Mid | AdSense 승인 후 교체 -->
+    <div class="ad-slot">Advertisement</div>
+    <section class="seo">
+      <h2>What is image compression?</h2>
+      <p>Image compression shrinks a file's size, usually by re-encoding the pixel data more efficiently or discarding detail that's hard to notice. This tool re-encodes your image at an adjustable <strong>quality</strong> level using the browser's Canvas API, so you can trade a little visual detail for a much smaller file — ideal for <strong>faster websites, email attachments, and upload limits</strong>.</p>
+      <h2>How to compress an image online</h2>
+      <ul>
+        <li>Drop your <strong>JPG, PNG, or WebP</strong> into the box above (or click to browse).</li>
+        <li>Drag the <strong>quality</strong> slider — lower means a smaller file but more visible compression artifacts. Watch the live preview to find the sweet spot.</li>
+        <li>Click <strong>Compress image</strong>, check the before/after size, then hit <strong>Download</strong>.</li>
+      </ul>
+      <h2>Why doesn't PNG shrink as much?</h2>
+      <p>PNG is a <strong>lossless</strong> format — it's not designed to throw away detail the way JPG and WebP are. Because of that, the browser's <code>canvas.toBlob()</code> quality parameter has little to no effect on PNG output; any size reduction you see comes from re-encoding and color/palette optimization, not from a quality trade-off. If you need a much smaller file and don't need transparency, converting to <a href="/png-to-jpg">JPG</a> or <a href="/png-to-webp">WebP</a> (which does support transparency) will almost always beat compressing the PNG itself.</p>
+      <h2>Frequently asked questions</h2>
+      <p class="faq-q">Is my image uploaded anywhere?</p>
+      <p>No. Compression happens <strong>100% locally</strong> using an HTML <code>&lt;canvas&gt;</code> and <code>canvas.toBlob()</code> in your browser. Nothing is uploaded, there's no account, and no image ever leaves your device.</p>
+      <p class="faq-q">Which format compresses best?</p>
+      <p><strong>WebP</strong> usually gives the smallest file at a given visual quality, followed by <strong>JPG</strong>. <strong>PNG</strong> compresses the least here since it's lossless by design — see above.</p>
+      <p class="faq-q">Will compressing reduce image quality?</p>
+      <p>For JPG and WebP, yes — that's the trade-off. Keep the slider as high as your target file size allows, and use the live preview to judge whether the result still looks good enough for your use.</p>
+    </section>
+  </main>
+  <footer>
+    <p>ImageTools — free, private, browser-based image utilities. Your files never leave your device.</p>
+    <div class="links"><a href="/">All tools</a><a href="/image-resizer">Resize image</a><a href="/png-to-jpg">PNG to JPG</a></div>
+  </footer>
+  <script>
+    "use strict";
+    var img=null, file=null, name="image", mime="image/jpeg", lastUrl=null;
+    function $(id){ return document.getElementById(id); }
+    function setStatus(msg,type){ var el=$('status'); el.textContent=msg; el.className='status'+(type?' '+type:''); }
+    function fmtBytes(b){ if(b===0||b==null)return '0 B'; var k=1024,u=['B','KB','MB','GB'],i=Math.min(Math.floor(Math.log(b)/Math.log(k)),u.length-1); return (b/Math.pow(k,i)).toFixed(i===0?0:(b/Math.pow(k,i)>=100?0:1))+' '+u[i]; }
+    function baseName(n){ return (n||'image').replace(/\.[^.]+$/, ''); }
+    function extFor(m){ return m==='image/png'?'png':m==='image/webp'?'webp':'jpg'; }
+    var quality=$('quality'), qval=$('qval');
+    quality.addEventListener('input', function(){ qval.textContent=quality.value+'%'; });
+    function updatePngNote(){
+      var isPng = mime==='image/png';
+      $('pngnote').classList.toggle('show', isPng);
+      quality.disabled = isPng;
+    }
+    function loadFile(f){
+      if(!f) return;
+      var okType = f.type==='image/png' || f.type==='image/jpeg' || f.type==='image/webp';
+      if(!okType && !/\.(png|jpe?g|webp)$/i.test(f.name)){ setStatus('⚠️ Please choose a JPG, PNG, or WebP image.','error'); return; }
+      var reader=new FileReader();
+      reader.onerror=function(){ setStatus('⚠️ Could not read that file. Try another image.','error'); };
+      reader.onload=function(e){
+        var im=new Image();
+        im.onload=function(){
+          img=im; file=f; name=baseName(f.name);
+          mime = (f.type==='image/png'||f.type==='image/webp'||f.type==='image/jpeg') ? f.type : 'image/jpeg';
+          updatePngNote();
+          $('ctrl').classList.add('show'); $('pv').style.display='none';
+          $('pv-orig').src=im.src;
+          $('pv-orig-meta').innerHTML='<b>'+im.naturalWidth+'×'+im.naturalHeight+'</b> · '+fmtBytes(f.size)+' · '+(f.type||'image');
+          setStatus('Loaded "'+f.name+'". Adjust quality and click Compress.','ok');
+        };
+        im.onerror=function(){ setStatus('⚠️ This file is not a valid or supported image.','error'); };
+        im.src=e.target.result;
+      };
+      reader.readAsDataURL(f);
+    }
+    var drop=$('drop'), input=$('file');
+    input.addEventListener('change', function(){ if(input.files[0]) loadFile(input.files[0]); });
+    ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.add('drag'); }); });
+    ['dragleave','dragend','drop'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.remove('drag'); }); });
+    drop.addEventListener('drop', function(e){ var f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0]; if(f) loadFile(f); });
+    function compress(){
+      if(!img){ setStatus('Please choose an image first.','error'); return; }
+      var q=Math.min(1, Math.max(0.1, parseInt($('quality').value,10)/100));
+      var canvas=document.createElement('canvas'); canvas.width=img.naturalWidth; canvas.height=img.naturalHeight;
+      var ctx=canvas.getContext('2d');
+      if(mime==='image/jpeg'){ ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,canvas.width,canvas.height); }
+      ctx.drawImage(img,0,0);
+      canvas.toBlob(function(blob){
+        if(!blob){ setStatus('Could not compress this image. Try a different file.','error'); return; }
+        if(lastUrl){ try{ URL.revokeObjectURL(lastUrl); }catch(e){} }
+        var url=URL.createObjectURL(blob); lastUrl=url; $('pv-out').src=url;
+        var orig=file?file.size:0; var pct=orig>0?Math.round((1-blob.size/orig)*100):0;
+        var smaller = orig>0 && blob.size<=orig;
+        var deltaHtml = orig>0
+          ? ('<br><span class="delta '+(smaller?'down':'up')+'">'+(smaller?'▼ '+pct+'% smaller':'▲ '+Math.abs(pct)+'% larger')+'</span>')
+          : '';
+        $('pv-out-meta').innerHTML='<b>'+fmtBytes(blob.size)+'</b> · '+extFor(mime).toUpperCase()+deltaHtml;
+        var dl=$('dl'); dl.href=url; dl.download=name+'-compressed.'+extFor(mime);
+        if(!dl.dataset.gaBound){ dl.dataset.gaBound='1'; dl.addEventListener('click', function(){ if (typeof gtag === 'function') { gtag('event', 'image_convert', { tool: 'image-compressor' }); } }); }
+        $('pv').style.display='grid';
+        setStatus(smaller ? ('✓ Compressed: '+fmtBytes(orig)+' → '+fmtBytes(blob.size)+' ('+pct+'% smaller). Click Download.') : 'Compressed, but the result was not smaller — try a lower quality or a different format.', smaller?'ok':'error');
+        try{ gtag('event','compress',{format:extFor(mime),quality:Math.round(q*100)}); }catch(e){}
+      }, mime, q);
+    }
+    function reset(){ img=null; file=null; name='image'; mime='image/jpeg'; $('ctrl').classList.remove('show'); $('pv').style.display='none'; $('file').value=''; $('pngnote').classList.remove('show'); quality.disabled=false; setStatus('',''); }
+    window.compress=compress; window.reset=reset;
+  </script>
+</body>
+</html>

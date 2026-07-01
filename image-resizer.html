@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){if(location.hostname.indexOf(".pages.dev")>-1){location.replace("https://image.quietools.com"+location.pathname+location.search+location.hash);}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Resizer — Resize Photos Online by Pixels or %, Free &amp; Private | ImageTools</title>
+  <link rel="canonical" href="https://image.quietools.com/image-resizer">
+  <meta name="description" content="Resize an image by exact pixel dimensions or percentage, with a lock-aspect-ratio option and one-click presets for Instagram, Twitter/X, and Facebook. No uploads; runs in your browser.">
+  <meta name="keywords" content="resize image online, image resizer, resize photo for instagram, resize picture, change image size, resize image pixels, photo resizer">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Image Resizer — Resize Photos Online, Free &amp; Private">
+  <meta property="og:image" content="https://image.quietools.com/og-image.jpg">
+  <meta property="og:image:width" content="1376">
+  <meta property="og:image:height" content="768">
+  <meta name="twitter:image" content="https://image.quietools.com/og-image.jpg">
+  <meta property="og:description" content="Resize an image by pixels or percentage, with presets for Instagram, Twitter/X and Facebook. Nothing uploaded.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://image.quietools.com/image-resizer">
+  <meta name="twitter:card" content="summary">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9QKMV5JQL5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9QKMV5JQL5');
+  </script>
+  <style>
+    :root{--bg:#f6f8fc;--panel:#ffffff;--panel-2:#f1f4fa;--border:#e2e8f3;--border-strong:#cdd6e8;--text:#1a2233;--muted:#6b7689;--accent:#5b6cff;--accent-2:#7c4dff;--accent-soft:#eef0ff;--err:#e5484d;--ok:#1f9d55;--shadow:0 1px 3px rgba(20,30,60,.06),0 8px 24px rgba(20,30,60,.06);}
+    @media (prefers-color-scheme: dark){:root{--bg:#0f1320;--panel:#171c2c;--panel-2:#1e2435;--border:#2a3145;--border-strong:#39415a;--text:#e8ecf5;--muted:#9aa4ba;--accent:#7c8bff;--accent-2:#a98bff;--accent-soft:#222a45;--err:#ff6b6b;--ok:#4ade80;--shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);}}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    header{border-bottom:1px solid var(--border);padding:.85rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:var(--panel)}
+    .logo{font-size:1.15rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:.5rem;letter-spacing:-.01em}
+    .logo .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:.95rem}
+    .logo span{color:var(--accent)}
+    .priv-pill{font-size:.72rem;font-weight:600;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent);border:1px solid color-mix(in srgb,var(--ok) 30%,transparent);padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+    main{max-width:860px;margin:0 auto;padding:1.5rem 1.25rem 0}
+    .crumb{font-size:.82rem;color:var(--muted);margin-bottom:1rem}
+    .hero{text-align:center;padding:.5rem 0 .25rem}
+    h1{font-size:1.9rem;margin-bottom:.5rem;letter-spacing:-.02em;line-height:1.2}
+    .hero .lead{color:var(--muted);max-width:600px;margin:0 auto;font-size:1.01rem}
+    .ad-slot{margin:1.5rem 0;min-height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;border:1px dashed var(--border-strong);border-radius:12px;background:var(--panel-2)}
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:1.5rem;box-shadow:var(--shadow);margin-top:1rem}
+    .drop{display:block;border:2px dashed var(--border-strong);border-radius:14px;padding:2.25rem 1rem;text-align:center;cursor:pointer;transition:.18s;background:var(--panel-2);position:relative}
+    .drop:hover,.drop.drag{border-color:var(--accent);background:var(--accent-soft)}
+    .drop .big{font-size:2.2rem;line-height:1;margin-bottom:.6rem}
+    .drop .t{font-weight:600;margin-bottom:.25rem}
+    .drop .s{color:var(--muted);font-size:.85rem}
+    .drop input[type=file]{display:none}
+    .controls{margin-top:1.25rem;display:none}.controls.show{display:block}
+    .modewrap{display:flex;gap:.5rem;margin-bottom:1rem}
+    .modebtn{flex:1;background:var(--panel-2);border:1px solid var(--border-strong);color:var(--text);border-radius:9px;padding:.6rem .8rem;font-size:.9rem;font-weight:600;cursor:pointer}
+    .modebtn.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .row{display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-end;margin-bottom:1rem}
+    .field{display:flex;flex-direction:column;gap:.35rem}
+    .field label{font-size:.8rem;font-weight:600;color:var(--muted)}
+    input[type=number]{background:var(--panel);color:var(--text);border:1px solid var(--border-strong);border-radius:9px;padding:.6rem .7rem;font-size:.95rem;width:130px;font-family:inherit}
+    input[type=number]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+    .lockwrap{display:flex;align-items:center;gap:.5rem;font-size:.88rem;color:var(--text);user-select:none;cursor:pointer;padding-bottom:.55rem}
+    .lockwrap input{width:18px;height:18px;accent-color:var(--accent);cursor:pointer}
+    .presets{margin:0 0 1.1rem}
+    .presets .lab{font-size:.8rem;font-weight:600;color:var(--muted);margin-bottom:.5rem}
+    .preset-grid{display:flex;flex-wrap:wrap;gap:.5rem}
+    .preset-btn{background:var(--panel-2);border:1px solid var(--border-strong);color:var(--text);border-radius:9px;padding:.55rem .85rem;font-size:.85rem;font-weight:600;cursor:pointer;text-align:left;line-height:1.3}
+    .preset-btn:hover{border-color:var(--accent)}
+    .preset-btn small{display:block;color:var(--muted);font-weight:500;font-size:.75rem}
+    .actions{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:.5rem}
+    button.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border:none;border-radius:10px;padding:.7rem 1.4rem;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+    button.primary:hover{filter:brightness(1.05)}button.primary:disabled{opacity:.5;cursor:not-allowed;filter:none}
+    button.ghost{background:var(--panel-2);color:var(--text);border:1px solid var(--border-strong);border-radius:10px;padding:.7rem 1.1rem;font-size:.92rem;font-weight:600;cursor:pointer}
+    a.dl{display:inline-block;text-decoration:none}
+    .preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem}
+    @media(max-width:560px){.preview-grid{grid-template-columns:1fr}}
+    .pv{background:var(--panel-2);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center}
+    .pv h3{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:.6rem}
+    .pv .imgbox{background:repeating-conic-gradient(#0000 0% 25%, color-mix(in srgb,var(--muted) 12%,transparent) 0% 50%) 50% / 18px 18px;border-radius:8px;min-height:140px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .pv img{max-width:100%;max-height:240px;display:block;border-radius:6px}
+    .pv .meta{margin-top:.6rem;font-size:.85rem;color:var(--muted)}.pv .meta b{color:var(--text)}
+    .status{margin:1rem 0 0;font-size:.9rem;min-height:1.3em}
+    .status.error{color:var(--err);font-weight:600}.status.ok{color:var(--ok);font-weight:600}
+    .related{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+    .related a{font-size:.85rem;background:var(--panel);border:1px solid var(--border-strong);border-radius:999px;padding:.4rem .85rem;color:var(--text)}
+    .related a:hover{border-color:var(--accent);text-decoration:none}
+    .seo{margin-top:2.5rem;border-top:1px solid var(--border);padding-top:1.75rem}
+    .seo h2{font-size:1.25rem;margin:1.5rem 0 .5rem;letter-spacing:-.01em}.seo h2:first-child{margin-top:0}
+    .seo p,.seo li{color:var(--muted);margin-bottom:.5rem}.seo ul{margin:0 0 .5rem 1.25rem}.seo strong{color:var(--text)}
+    .faq-q{font-weight:700;color:var(--text);margin-top:.75rem}
+    footer{border-top:1px solid var(--border);padding:2rem 1.25rem;text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem}
+    footer .links{margin-top:.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2324533526355362" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <a href="/" class="logo"><span class="mark">◩</span>Image<span>Tools</span></a>
+    <span class="priv-pill">🔒 100% in your browser</span>
+  </header>
+  <main>
+    <p class="crumb"><a href="/">Home</a> › Image Resizer</p>
+    <section class="hero">
+      <h1>Image Resizer</h1>
+      <p class="lead">Resize an image by exact pixels or by percentage, with one-click presets for Instagram, Twitter/X, and Facebook. No uploads — everything runs privately on your device.</p>
+    </section>
+    <!-- AD-SLOT:Top | AdSense 승인 후 교체 -->
+    <div class="ad-slot">Advertisement</div>
+    <div class="panel">
+      <label class="drop" id="drop">
+        <div class="big">⤢</div>
+        <div class="t">Drop an image here or click to browse</div>
+        <div class="s">PNG, JPG, WebP, GIF, BMP accepted — your file stays on your device</div>
+        <input type="file" id="file" accept="image/*">
+      </label>
+      <div class="controls" id="ctrl">
+        <div class="presets">
+          <div class="lab">Quick presets</div>
+          <div class="preset-grid" id="presetGrid">
+            <button type="button" class="preset-btn" data-w="1080" data-h="1080">Instagram post<small>1080 × 1080</small></button>
+            <button type="button" class="preset-btn" data-w="1200" data-h="675">Twitter / X post<small>1200 × 675</small></button>
+            <button type="button" class="preset-btn" data-w="820" data-h="312">Facebook cover<small>820 × 312</small></button>
+          </div>
+        </div>
+        <div class="modewrap">
+          <button type="button" class="modebtn sel" id="modePx" onclick="setMode('px')">Pixels</button>
+          <button type="button" class="modebtn" id="modePct" onclick="setMode('pct')">Percentage</button>
+        </div>
+        <div class="row" id="pxRow">
+          <div class="field">
+            <label for="rw">Width (px)</label>
+            <input type="number" id="rw" min="1" max="20000" step="1">
+          </div>
+          <div class="field">
+            <label for="rh">Height (px)</label>
+            <input type="number" id="rh" min="1" max="20000" step="1">
+          </div>
+          <label class="lockwrap" for="rlock"><input type="checkbox" id="rlock" checked> Lock aspect ratio</label>
+        </div>
+        <div class="row" id="pctRow" style="display:none">
+          <div class="field">
+            <label for="rpct">Scale (%)</label>
+            <input type="number" id="rpct" min="1" max="1000" step="1" value="50">
+          </div>
+          <div class="field">
+            <label>Result</label>
+            <div id="pctResult" style="padding:.6rem 0;font-weight:600;font-variant-numeric:tabular-nums">—</div>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="primary" id="rgo" onclick="runResize()">Resize image</button>
+          <button class="ghost" onclick="reset()">Choose another</button>
+        </div>
+        <div class="preview-grid" id="pv" style="display:none">
+          <div class="pv"><h3>Original</h3><div class="imgbox"><img id="pv-orig" alt="Original preview"></div><div class="meta" id="pv-orig-meta"></div></div>
+          <div class="pv"><h3>Resized</h3><div class="imgbox"><img id="pv-out" alt="Resized preview"></div><div class="meta" id="pv-out-meta"></div>
+            <div class="actions" style="justify-content:center;margin-top:.75rem"><a id="dl" class="primary dl" download>⬇ Download</a></div>
+          </div>
+        </div>
+        <p class="status" id="status"></p>
+      </div>
+      <div class="related">
+        <a href="/guides/how-to-resize-an-image-online.html">📖 Guide: Resize an image online</a>
+        <a href="/image-compressor">Compress image</a>
+        <a href="/batch">Bulk convert</a>
+        <a href="/png-to-jpg">PNG → JPG</a>
+        <a href="/">All image tools</a>
+      </div>
+    </div>
+    <!-- AD-SLOT:Mid | AdSense 승인 후 교체 -->
+    <div class="ad-slot">Advertisement</div>
+    <section class="seo">
+      <h2>How to resize an image online</h2>
+      <p>Resizing changes an image's pixel dimensions — handy for meeting an upload limit, fitting a profile photo, or preparing a picture for social media. With the tool above:</p>
+      <ul>
+        <li>Drop your image in (or click to browse), then pick a <strong>preset</strong> for a common social size, or switch to manual <strong>Pixels</strong> or <strong>Percentage</strong> mode.</li>
+        <li>In Pixels mode, type a new <strong>width</strong> or <strong>height</strong> and keep <strong>Lock aspect ratio</strong> on so the image scales proportionally without stretching.</li>
+        <li>Click <strong>Resize image</strong>, check the preview, then hit <strong>Download</strong>.</li>
+      </ul>
+      <p>Tip: shrinking is safe, but enlarging an image beyond its original resolution just stretches existing pixels — it won't add real detail.</p>
+      <h2>Common social media image sizes</h2>
+      <ul>
+        <li><strong>Instagram post (square)</strong> — 1080 × 1080px</li>
+        <li><strong>Twitter / X post</strong> — 1200 × 675px (16:9)</li>
+        <li><strong>Facebook cover photo</strong> — 820 × 312px (desktop)</li>
+      </ul>
+      <p>These are stable, widely-used specs — use the preset buttons above to jump straight to them.</p>
+      <h2>Frequently asked questions</h2>
+      <p class="faq-q">Is my image uploaded to resize it?</p>
+      <p>No. Resizing happens <strong>100% locally</strong> on an HTML <code>&lt;canvas&gt;</code> in your browser. Nothing is uploaded, and no image ever leaves your device.</p>
+      <p class="faq-q">Will resizing reduce quality?</p>
+      <p>Shrinking an image is visually lossless — you're just scaling pixels down. Enlarging beyond the original size will look softer, since there's no extra detail to add.</p>
+      <p class="faq-q">What happens if I don't lock the aspect ratio?</p>
+      <p>The image will stretch or squash to exactly match the width and height you enter, which can distort faces and straight lines. Leave <strong>Lock aspect ratio</strong> on unless you specifically want a different ratio.</p>
+    </section>
+  </main>
+  <footer>
+    <p>ImageTools — free, private, browser-based image utilities. Your files never leave your device.</p>
+    <div class="links"><a href="/">All tools</a><a href="/image-compressor">Compress image</a><a href="/png-to-jpg">PNG to JPG</a></div>
+  </footer>
+  <script>
+    "use strict";
+    var img=null, file=null, name="image", srcMime="image/png", lastUrl=null, mode='px';
+    function $(id){ return document.getElementById(id); }
+    function setStatus(msg,type){ var el=$('status'); el.textContent=msg; el.className='status'+(type?' '+type:''); }
+    function fmtBytes(b){ if(b===0||b==null)return '0 B'; var k=1024,u=['B','KB','MB','GB'],i=Math.min(Math.floor(Math.log(b)/Math.log(k)),u.length-1); return (b/Math.pow(k,i)).toFixed(i===0?0:(b/Math.pow(k,i)>=100?0:1))+' '+u[i]; }
+    function baseName(n){ return (n||'image').replace(/\.[^.]+$/, ''); }
+    function extFor(m){ return m==='image/png'?'png':m==='image/webp'?'webp':'jpg'; }
+
+    function setMode(m){
+      mode=m;
+      $('modePx').classList.toggle('sel', m==='px');
+      $('modePct').classList.toggle('sel', m==='pct');
+      $('pxRow').style.display = m==='px' ? 'flex' : 'none';
+      $('pctRow').style.display = m==='pct' ? 'flex' : 'none';
+      updatePctResult();
+    }
+    function updatePctResult(){
+      if(!img) return;
+      var pct=parseFloat($('rpct').value);
+      if(!(pct>0)){ $('pctResult').textContent='—'; return; }
+      var w=Math.max(1, Math.round(img.naturalWidth*pct/100));
+      var h=Math.max(1, Math.round(img.naturalHeight*pct/100));
+      $('pctResult').textContent = w+' × '+h+' px';
+    }
+    $('rpct').addEventListener('input', updatePctResult);
+
+    var rw=$('rw'), rh=$('rh'), rlock=$('rlock');
+    rw.addEventListener('input', function(){
+      if(!img || !rlock.checked) return;
+      var ratio = img.naturalHeight/img.naturalWidth;
+      if(rw.value>0) rh.value = Math.max(1, Math.round(rw.value*ratio));
+    });
+    rh.addEventListener('input', function(){
+      if(!img || !rlock.checked) return;
+      var ratio = img.naturalWidth/img.naturalHeight;
+      if(rh.value>0) rw.value = Math.max(1, Math.round(rh.value*ratio));
+    });
+
+    $('presetGrid').addEventListener('click', function(e){
+      var btn=e.target.closest('.preset-btn'); if(!btn) return;
+      setMode('px');
+      var w=parseInt(btn.dataset.w,10), h=parseInt(btn.dataset.h,10);
+      rlock.checked=false;
+      rw.value=w; rh.value=h;
+      if(img) setStatus('Preset applied: '+w+'×'+h+'px. Click Resize image.','ok');
+    });
+
+    function loadFile(f){
+      if(!f) return;
+      if(!f.type.startsWith('image/') && !/\.(png|jpe?g|webp|gif|bmp|avif)$/i.test(f.name)){ setStatus('⚠️ That does not look like an image. Please choose a PNG, JPG, WebP, GIF or BMP.','error'); return; }
+      var reader=new FileReader();
+      reader.onerror=function(){ setStatus('⚠️ Could not read that file. Try another image.','error'); };
+      reader.onload=function(e){
+        var im=new Image();
+        im.onload=function(){
+          img=im; file=f; name=baseName(f.name);
+          srcMime = (f.type==='image/jpeg'||f.type==='image/webp') ? f.type : 'image/png';
+          $('ctrl').classList.add('show'); $('pv').style.display='none';
+          $('pv-orig').src=im.src;
+          $('pv-orig-meta').innerHTML='<b>'+im.naturalWidth+'×'+im.naturalHeight+'</b> · '+fmtBytes(f.size)+' · '+(f.type||'image');
+          rw.value=im.naturalWidth; rh.value=im.naturalHeight;
+          updatePctResult();
+          setStatus('Loaded "'+f.name+'". Pick a preset or set dimensions, then click Resize.','ok');
+        };
+        im.onerror=function(){ setStatus('⚠️ This file is not a valid or supported image.','error'); };
+        im.src=e.target.result;
+      };
+      reader.readAsDataURL(f);
+    }
+    var drop=$('drop'), input=$('file');
+    input.addEventListener('change', function(){ if(input.files[0]) loadFile(input.files[0]); });
+    ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.add('drag'); }); });
+    ['dragleave','dragend','drop'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.remove('drag'); }); });
+    drop.addEventListener('drop', function(e){ var f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0]; if(f) loadFile(f); });
+
+    function targetDims(){
+      if(!img) return null;
+      if(mode==='pct'){
+        var pct=parseFloat($('rpct').value);
+        if(!(pct>0)) return null;
+        return { w: Math.max(1, Math.round(img.naturalWidth*pct/100)), h: Math.max(1, Math.round(img.naturalHeight*pct/100)) };
+      }
+      var w=parseInt(rw.value,10), h=parseInt(rh.value,10);
+      if(!(w>0) || !(h>0)) return null;
+      return { w:w, h:h };
+    }
+    function runResize(){
+      if(!img){ setStatus('Please choose an image first.','error'); return; }
+      var d=targetDims();
+      if(!d){ setStatus('Please enter a valid width/height (or percentage) first.','error'); return; }
+      if(d.w>20000 || d.h>20000){ setStatus('Maximum dimension is 20000px.','error'); return; }
+      var canvas=document.createElement('canvas'); canvas.width=d.w; canvas.height=d.h;
+      var ctx=canvas.getContext('2d');
+      ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality='high';
+      if(srcMime==='image/jpeg'){ ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,d.w,d.h); }
+      ctx.drawImage(img,0,0,d.w,d.h);
+      canvas.toBlob(function(blob){
+        if(!blob){ setStatus('Could not generate the resized image. Try a smaller size.','error'); return; }
+        if(lastUrl){ try{ URL.revokeObjectURL(lastUrl); }catch(e){} }
+        var url=URL.createObjectURL(blob); lastUrl=url; $('pv-out').src=url;
+        $('pv-out-meta').innerHTML='<b>'+d.w+'×'+d.h+'</b> · '+fmtBytes(blob.size);
+        var dl=$('dl'); dl.href=url; dl.download=name+'-'+d.w+'x'+d.h+'.'+extFor(srcMime);
+        if(!dl.dataset.gaBound){ dl.dataset.gaBound='1'; dl.addEventListener('click', function(){ if (typeof gtag === 'function') { gtag('event', 'image_convert', { tool: 'image-resizer' }); } }); }
+        $('pv').style.display='grid';
+        setStatus('✓ Resized to '+d.w+'×'+d.h+'px ('+fmtBytes(blob.size)+'). Click Download.','ok');
+        try{ gtag('event','resize',{width:d.w,height:d.h}); }catch(e){}
+      }, srcMime, srcMime==='image/png' ? undefined : 0.92);
+    }
+    function reset(){ img=null; file=null; name='image'; srcMime='image/png'; $('ctrl').classList.remove('show'); $('pv').style.display='none'; $('file').value=''; setMode('px'); rlock.checked=true; setStatus('',''); }
+    window.runResize=runResize; window.reset=reset; window.setMode=setMode;
+  </script>
+</body>
+</html>
