@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){if(location.hostname.indexOf(".pages.dev")>-1){location.replace("https://image.quietools.com"+location.pathname+location.search+location.hash);}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Background Remover — Remove Photo Background Free & Private (Portraits) | ImageTools</title>
+  <link rel="canonical" href="https://image.quietools.com/background-remover">
+  <meta name="description" content="Remove the background from a portrait photo and download a transparent PNG. Runs entirely in your browser with an AI matting model — no uploads, no signup.">
+  <meta name="keywords" content="background remover, remove background, transparent png, portrait background remover, remove photo background online, cut out person, background eraser">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Background Remover — Free & Private (Portraits)">
+  <meta property="og:image" content="https://image.quietools.com/og-image.jpg">
+  <meta property="og:image:width" content="1376">
+  <meta property="og:image:height" content="768">
+  <meta name="twitter:image" content="https://image.quietools.com/og-image.jpg">
+  <meta property="og:description" content="Remove a portrait background to a transparent PNG, entirely in your browser. Nothing uploaded, no signup.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://image.quietools.com/background-remover">
+  <meta name="twitter:card" content="summary">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9QKMV5JQL5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    if(location.hostname.indexOf('.pages.dev')===-1){gtag('config','G-9QKMV5JQL5',{linker:{domains:['quietools.com','calc.quietools.com','image.quietools.com','dev.quietools.com','typing.quietools.com','invoice.quietools.com']}});}
+  </script>
+  <!--
+    Background removal runs 100% in the browser. Nothing is uploaded.
+    - Engine:  ONNX Runtime Web (WASM)  — MIT license, self-hosted at /vendor/ort/
+    - Model:   MODNet portrait matting (Xenova/modnet, INT8 quantized, 6.6 MB)
+               Apache-2.0 (commercial use OK), self-hosted at /assets/bg/modnet.onnx
+    Full license notices: /vendor/ort/LICENSE-NOTICES.txt
+    Both engine and model are lazy-loaded on first use (see loadEngine()).
+  -->
+  <style>
+    :root{--bg:#f6f8fc;--panel:#ffffff;--panel-2:#f1f4fa;--border:#e2e8f3;--border-strong:#cdd6e8;--text:#1a2233;--muted:#6b7689;--accent:#5b6cff;--accent-2:#7c4dff;--accent-soft:#eef0ff;--err:#e5484d;--ok:#1f9d55;--shadow:0 1px 3px rgba(20,30,60,.06),0 8px 24px rgba(20,30,60,.06);}
+    @media (prefers-color-scheme: dark){:root{--bg:#0f1320;--panel:#171c2c;--panel-2:#1e2435;--border:#2a3145;--border-strong:#39415a;--text:#e8ecf5;--muted:#9aa4ba;--accent:#7c8bff;--accent-2:#a98bff;--accent-soft:#222a45;--err:#ff6b6b;--ok:#4ade80;--shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);}}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    header{border-bottom:1px solid var(--border);padding:.85rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:var(--panel)}
+    .logo{font-size:1.15rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:.5rem;letter-spacing:-.01em}
+    .logo .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:.95rem}
+    .logo span{color:var(--accent)}
+    .priv-pill{font-size:.72rem;font-weight:600;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent);border:1px solid color-mix(in srgb,var(--ok) 30%,transparent);padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+    main{max-width:860px;margin:0 auto;padding:1.5rem 1.25rem 0}
+    .crumb{font-size:.82rem;color:var(--muted);margin-bottom:1rem}
+    .hero{text-align:center;padding:.5rem 0 .25rem}
+    h1{font-size:1.9rem;margin-bottom:.5rem;letter-spacing:-.02em;line-height:1.2}
+    .hero .lead{color:var(--muted);max-width:620px;margin:0 auto;font-size:1.01rem}
+    .scope{display:inline-block;margin:.75rem auto 0;font-size:.82rem;color:var(--muted);background:var(--panel-2);border:1px solid var(--border);border-radius:999px;padding:.3rem .8rem}
+    .ad-slot{margin:1.5rem 0;min-height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;border:1px dashed var(--border-strong);border-radius:12px;background:var(--panel-2)}
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:1.5rem;box-shadow:var(--shadow);margin-top:1rem}
+    .drop{display:block;border:2px dashed var(--border-strong);border-radius:14px;padding:2.25rem 1rem;text-align:center;cursor:pointer;transition:.18s;background:var(--panel-2);position:relative}
+    .drop:hover,.drop.drag{border-color:var(--accent);background:var(--accent-soft)}
+    .drop .big{font-size:2.2rem;line-height:1;margin-bottom:.6rem}
+    .drop .t{font-weight:600;margin-bottom:.25rem}
+    .drop .s{color:var(--muted);font-size:.85rem}
+    .drop input[type=file]{display:none}
+    .controls{margin-top:1.25rem;display:none}.controls.show{display:block}
+    .actions{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:1.1rem}
+    button.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border:none;border-radius:10px;padding:.7rem 1.4rem;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+    button.primary:hover{filter:brightness(1.05)}button.primary:disabled{opacity:.55;cursor:progress;filter:none}
+    button.ghost{background:var(--panel-2);color:var(--text);border:1px solid var(--border-strong);border-radius:10px;padding:.7rem 1.1rem;font-size:.92rem;font-weight:600;cursor:pointer}
+    a.dl{display:inline-block;text-decoration:none}
+    .preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem}
+    @media(max-width:560px){.preview-grid{grid-template-columns:1fr}}
+    .pv{background:var(--panel-2);border:1px solid var(--border);border-radius:12px;padding:1rem;text-align:center}
+    .pv h3{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:.6rem}
+    .pv .imgbox{background:repeating-conic-gradient(#0000 0% 25%, color-mix(in srgb,var(--muted) 14%,transparent) 0% 50%) 50% / 18px 18px;border-radius:8px;min-height:180px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .pv img{max-width:100%;max-height:300px;display:block;border-radius:6px}
+    .pv .meta{margin-top:.6rem;font-size:.85rem;color:var(--muted)}.pv .meta b{color:var(--text)}
+    .progwrap{margin-top:1rem;display:none}.progwrap.show{display:block}
+    .progbar{height:8px;border-radius:999px;background:var(--panel-2);border:1px solid var(--border);overflow:hidden}
+    .progbar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .2s}
+    .status{margin:1rem 0 0;font-size:.9rem;min-height:1.3em}
+    .status.error{color:var(--err);font-weight:600}.status.ok{color:var(--ok);font-weight:600}
+    .spin{display:inline-block;width:.85em;height:.85em;border:2px solid color-mix(in srgb,var(--accent) 35%,transparent);border-top-color:var(--accent);border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px;margin-right:.4rem}
+    @keyframes sp{to{transform:rotate(360deg)}}
+    .note{font-size:.82rem;color:var(--muted);margin-top:.9rem}
+    .related{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+    .related a{font-size:.85rem;background:var(--panel);border:1px solid var(--border-strong);border-radius:999px;padding:.4rem .85rem;color:var(--text)}
+    .related a:hover{border-color:var(--accent);text-decoration:none}
+    .seo{margin-top:2.5rem;border-top:1px solid var(--border);padding-top:1.75rem}
+    .seo h2{font-size:1.25rem;margin:1.5rem 0 .5rem;letter-spacing:-.01em}.seo h2:first-child{margin-top:0}
+    .seo p,.seo li{color:var(--muted);margin-bottom:.5rem}.seo ul{margin:0 0 .5rem 1.25rem}.seo strong{color:var(--text)}
+    .faq-q{font-weight:700;color:var(--text);margin-top:.75rem}
+    footer{border-top:1px solid var(--border);padding:2rem 1.25rem;text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem}
+    footer .links{margin-top:.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2324533526355362" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <a href="/" class="logo"><span class="mark">◩</span>Image<span>Tools</span></a>
+    <span class="priv-pill">🔒 100% in your browser</span>
+  </header>
+  <main>
+    <p class="crumb"><a href="/">Home</a> › Background Remover</p>
+    <section class="hero">
+      <h1>Background Remover</h1>
+      <p class="lead">Remove the background from a photo and download a transparent PNG — the whole thing runs on your own device with an AI matting model. No uploads, no signup.</p>
+      <span class="scope">Tuned for <strong>people &amp; portraits</strong> (headshots, selfies, full-body). Works best when a person is the subject.</span>
+    </section>
+    <!-- AD-SLOT:Top | AdSense 승인 후 교체 -->
+    <div class="ad-slot">Advertisement</div>
+    <div class="panel">
+      <label class="drop" id="drop">
+        <div class="big">🧑→🖼️</div>
+        <div class="t">Drop a portrait photo here or click to browse</div>
+        <div class="s">JPG / PNG / WebP — a photo of a person works best. Your image never leaves your device.</div>
+        <input type="file" id="file" accept="image/png,image/jpeg,image/webp,image/*">
+      </label>
+      <div class="controls" id="ctrl">
+        <div class="actions">
+          <button class="primary" id="go" onclick="removeBg()">✂️ Remove Background</button>
+          <button class="ghost" onclick="reset()">Choose another</button>
+        </div>
+        <div class="progwrap" id="progwrap"><div class="progbar"><i id="progbar"></i></div></div>
+        <div class="preview-grid" id="pv" style="display:none">
+          <div class="pv"><h3>Original</h3><div class="imgbox"><img id="pv-in" alt="Original photo preview"></div><div class="meta" id="in-meta"></div></div>
+          <div class="pv"><h3>Background removed</h3><div class="imgbox"><img id="pv-out" alt="Cut-out preview on transparent checkerboard"></div><div class="meta" id="out-meta"></div>
+            <div class="actions" style="justify-content:center;margin-top:.75rem"><a id="dl" class="primary dl" download style="display:none">⬇ Download PNG</a></div>
+          </div>
+        </div>
+        <p class="status" id="status"></p>
+        <p class="note">First run downloads a ~7 MB AI model to your browser (then it's cached). Everything — the model and your photo — stays on your device; nothing is uploaded.</p>
+      </div>
+      <div class="related">
+        <a href="/remove-exif">🧹 Remove EXIF / GPS</a>
+        <a href="/image-compressor">🗜️ Compress image</a>
+        <a href="/png-to-webp">PNG → WebP</a>
+        <a href="/image-resizer">⤢ Resize image</a>
+        <a href="/">All image tools</a>
+      </div>
+    </div>
+    <!-- AD-SLOT:Mid | AdSense 승인 후 교체 -->
+    <div class="ad-slot">Advertisement</div>
+    <section class="seo">
+      <h2>How to remove a background</h2>
+      <ul>
+        <li>Drop a <strong>photo of a person</strong> into the box above (or click to browse).</li>
+        <li>Click <strong>Remove Background</strong>. The first run downloads a small AI model; after that it's instant to start.</li>
+        <li>Check the cut-out on the checkerboard preview, then hit <strong>Download PNG</strong> to save a transparent image.</li>
+      </ul>
+      <h2>What this tool is good at (and what it isn't)</h2>
+      <p>This remover uses <strong>MODNet</strong>, an open-source <strong>portrait-matting</strong> model. It's built to separate <strong>people</strong> from their surroundings, so it shines on headshots, selfies, profile pictures, and full-body shots. It is <strong>not</strong> a general object cut-out tool — for products, pets, or arbitrary objects the edges may be rough, because the model was trained to find <em>people</em>. Honest expectations: great for portraits, hit-or-miss for everything else.</p>
+      <h2>Are my photos uploaded anywhere?</h2>
+      <p>No. Both the AI model and your photo are processed <strong>entirely in your browser</strong> using <a href="https://github.com/microsoft/onnxruntime" rel="nofollow">ONNX Runtime Web</a> (WebAssembly). There is <strong>no server, no account, and no tracking of your images</strong>. The model file is served from this site and cached by your browser — you can even go offline after the first run and it still works.</p>
+      <h2>Frequently asked questions</h2>
+      <p class="faq-q">Why does the first run take a moment?</p>
+      <p>The first time you use it, your browser downloads the ~7 MB matting model and the WebAssembly runtime. Both are then cached, so later runs start immediately. Segmentation itself takes a couple of seconds on a typical laptop.</p>
+      <p class="faq-q">The edges around hair look soft — is that normal?</p>
+      <p>Matting hair is genuinely hard. MODNet produces a soft alpha edge, which usually looks natural on a new background. Well-lit photos with good contrast between the person and the background give the cleanest results.</p>
+      <p class="faq-q">Can I remove the background from a product or an animal?</p>
+      <p>You can try, but this model is trained on people, so non-human subjects often come out rough. It's meant as a <strong>portrait</strong> background remover.</p>
+      <p class="faq-q">What license is the model under?</p>
+      <p>The MODNet model is <strong>Apache-2.0</strong> and the ONNX Runtime is <strong>MIT</strong> — both permit free and commercial use. Full notices ship with the site.</p>
+    </section>
+  </main>
+  <footer>
+    <p>ImageTools — free, private, browser-based image utilities. Your files never leave your device.</p>
+    <div class="links"><a href="/">All tools</a><a href="/remove-exif">Remove EXIF</a><a href="/image-compressor">Compress</a></div>
+  </footer>
+  <script>
+    "use strict";
+    // ---- Self-hosted engine + model (lazy-loaded on first use) ----
+    var ORT_JS   = "/vendor/ort/ort.wasm.min.js";     // ONNX Runtime Web (WASM) — MIT
+    var ORT_DIR  = "/vendor/ort/";                     // where the .wasm/.mjs live
+    var MODEL_URL= "/assets/bg/modnet.onnx";           // MODNet INT8 — Apache-2.0
+    var IN_SIZE  = 512;                                // MODNet input (multiple of 32)
+
+    var file=null, name="image", lastUrl=null, busy=false;
+    var ortReady=false, session=null;
+    function $(id){ return document.getElementById(id); }
+    function setStatus(msg,type,spin){ var el=$('status'); el.innerHTML=(spin?'<span class="spin"></span>':'')+msg; el.className='status'+(type?' '+type:''); }
+    function fmtBytes(b){ if(b===0)return '0 B'; var k=1024,u=['B','KB','MB','GB'],i=Math.min(Math.floor(Math.log(b)/Math.log(k)),u.length-1); return (b/Math.pow(k,i)).toFixed(i===0?0:(b/Math.pow(k,i)>=100?0:1))+' '+u[i]; }
+    function baseName(n){ return (n||'image').replace(/\.[^.]+$/, ''); }
+    function showProg(p){ var w=$('progwrap'); if(p==null){ w.classList.remove('show'); return; } w.classList.add('show'); $('progbar').style.width=Math.max(0,Math.min(100,p))+'%'; }
+
+    function loadScript(src){
+      return new Promise(function(res,rej){
+        var s=document.createElement('script'); s.src=src; s.async=true;
+        s.onload=res; s.onerror=function(){ rej(new Error('script load failed: '+src)); };
+        document.head.appendChild(s);
+      });
+    }
+
+    // Lazily load ORT + the model. Returns the session (cached after first success).
+    function loadEngine(){
+      if(session) return Promise.resolve(session);
+      return Promise.resolve().then(function(){
+        // WASM support check — required for the runtime.
+        if(typeof WebAssembly!=='object'){ throw new Error('nowasm'); }
+        return ortReady ? null : loadScript(ORT_JS).then(function(){ ortReady=true; });
+      }).then(function(){
+        if(typeof ort==='undefined'){ throw new Error('noort'); }
+        // Point the runtime at our self-hosted wasm files (same-origin, no CDN).
+        ort.env.wasm.wasmPaths = ORT_DIR;
+        try{ ort.env.wasm.numThreads = 1; }catch(e){}   // avoid cross-origin-isolation requirement
+        setStatus('Downloading the AI model (first run only)…','',true);
+        return fetchModel(MODEL_URL);
+      }).then(function(buf){
+        setStatus('Preparing the model…','',true);
+        return ort.InferenceSession.create(buf,{ executionProviders:['wasm'] });
+      }).then(function(sess){ session=sess; showProg(null); return session; });
+    }
+
+    // Fetch model with a progress bar (still same-origin; nothing uploaded).
+    function fetchModel(url){
+      return fetch(url).then(function(resp){
+        if(!resp.ok) throw new Error('modelfetch '+resp.status);
+        var total=+(resp.headers.get('content-length')||0);
+        if(!resp.body || !total){ return resp.arrayBuffer(); }
+        var reader=resp.body.getReader(), chunks=[], got=0;
+        showProg(0);
+        return (function pump(){
+          return reader.read().then(function(r){
+            if(r.done){ var out=new Uint8Array(got),off=0; chunks.forEach(function(c){out.set(c,off);off+=c.length;}); return out.buffer; }
+            chunks.push(r.value); got+=r.value.length; showProg(Math.round(got/total*100));
+            return pump();
+          });
+        })();
+      });
+    }
+
+    // ---- Image helpers ----
+    var origImg=null;   // HTMLImageElement of the loaded photo
+    function loadFile(f){
+      if(!f) return;
+      if(!/^image\//.test(f.type) && !/\.(png|jpe?g|webp|bmp|gif)$/i.test(f.name)){ setStatus('Please choose an image file.','error'); return; }
+      file=f; name=baseName(f.name);
+      var url=URL.createObjectURL(f);
+      var img=new Image();
+      img.onload=function(){
+        origImg=img;
+        $('ctrl').classList.add('show'); $('pv').style.display='grid';
+        $('pv-in').src=url; $('in-meta').innerHTML='<b>'+fmtBytes(f.size)+'</b> · '+img.naturalWidth+'×'+img.naturalHeight;
+        $('pv-out').removeAttribute('src'); $('out-meta').innerHTML=''; var dl=$('dl'); dl.style.display='none'; dl.removeAttribute('href');
+        showProg(null);
+        setStatus('Loaded "'+f.name+'". Click Remove Background.','ok');
+      };
+      img.onerror=function(){ setStatus('That image could not be read. Try a JPG, PNG or WebP.','error'); };
+      img.src=url;
+    }
+    var drop=$('drop'), input=$('file');
+    input.addEventListener('change', function(){ if(input.files[0]) loadFile(input.files[0]); });
+    ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.add('drag'); }); });
+    ['dragleave','dragend','drop'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.remove('drag'); }); });
+    drop.addEventListener('drop', function(e){ var f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0]; if(f) loadFile(f); });
+
+    // Preprocess: resize to IN_SIZE, normalize (x/255-0.5)/0.5 -> [-1,1], CHW float32.
+    function preprocess(img){
+      var c=document.createElement('canvas'); c.width=IN_SIZE; c.height=IN_SIZE;
+      var ctx=c.getContext('2d'); ctx.drawImage(img,0,0,IN_SIZE,IN_SIZE);
+      var d=ctx.getImageData(0,0,IN_SIZE,IN_SIZE).data;
+      var n=IN_SIZE*IN_SIZE, arr=new Float32Array(3*n);
+      for(var i=0;i<n;i++){
+        arr[i]        = (d[i*4]  /255-0.5)/0.5; // R
+        arr[i+n]      = (d[i*4+1]/255-0.5)/0.5; // G
+        arr[i+2*n]    = (d[i*4+2]/255-0.5)/0.5; // B
+      }
+      return new ort.Tensor('float32', arr, [1,3,IN_SIZE,IN_SIZE]);
+    }
+
+    // Compose: upscale the alpha matte to full res and apply it to the original pixels.
+    function composite(img, matte){
+      var W=img.naturalWidth, H=img.naturalHeight;
+      // matte is IN_SIZE x IN_SIZE, values 0..1 -> put into a small canvas, then scale up.
+      var mc=document.createElement('canvas'); mc.width=IN_SIZE; mc.height=IN_SIZE;
+      var mctx=mc.getContext('2d'); var mimg=mctx.createImageData(IN_SIZE,IN_SIZE);
+      for(var i=0;i<IN_SIZE*IN_SIZE;i++){ var a=Math.max(0,Math.min(1,matte[i]))*255; mimg.data[i*4]=mimg.data[i*4+1]=mimg.data[i*4+2]=a; mimg.data[i*4+3]=255; }
+      mctx.putImageData(mimg,0,0);
+      // full-res alpha via bilinear upscale
+      var ac=document.createElement('canvas'); ac.width=W; ac.height=H;
+      var actx=ac.getContext('2d'); actx.imageSmoothingEnabled=true; actx.drawImage(mc,0,0,W,H);
+      var alpha=actx.getImageData(0,0,W,H).data;
+      // original pixels
+      var oc=document.createElement('canvas'); oc.width=W; oc.height=H;
+      var octx=oc.getContext('2d'); octx.drawImage(img,0,0,W,H);
+      var out=octx.getImageData(0,0,W,H);
+      for(var j=0;j<W*H;j++){ out.data[j*4+3]=alpha[j*4]; } // use matte luminance as alpha
+      octx.putImageData(out,0,0);
+      return oc;
+    }
+
+    function removeBg(){
+      if(!file||!origImg){ setStatus('Please choose a photo first.','error'); return; }
+      if(busy) return;
+      busy=true; $('go').disabled=true;
+      setStatus('Loading the engine…','',true);
+      loadEngine().then(function(sess){
+        setStatus('Removing the background locally…','',true);
+        var feeds={}; feeds[sess.inputNames[0]]=preprocess(origImg);
+        return sess.run(feeds);
+      }).then(function(res){
+        var outName=session.outputNames[0];
+        var t=res[outName]; var matte=t.data; // [1,1,H,W] float, 0..1
+        var canvas=composite(origImg, matte);
+        canvas.toBlob(function(blob){
+          if(!blob){ throw new Error('encode'); }
+          if(lastUrl){ try{ URL.revokeObjectURL(lastUrl); }catch(e){} }
+          var url=URL.createObjectURL(blob); lastUrl=url;
+          $('pv-out').src=url;
+          $('out-meta').innerHTML='<b>'+fmtBytes(blob.size)+'</b> · transparent PNG';
+          var dl=$('dl'); dl.href=url; dl.download=name+'-no-bg.png'; dl.style.display='inline-block';
+          if(!dl.dataset.gaBound){ dl.dataset.gaBound='1'; dl.addEventListener('click', function(){ qtEvent('download', { tool: 'background-remover', format: 'png' }); }); }
+          setStatus('✓ Background removed. Click Download PNG.','ok');
+          try{ gtag('event','bg_remove',{tool:'background-remover'}); }catch(e){}
+          busy=false; $('go').disabled=false; showProg(null);
+        }, 'image/png');
+      }).catch(function(e){
+        showProg(null); busy=false; $('go').disabled=false;
+        var m=(e&&e.message)||'';
+        if(m.indexOf('nowasm')>-1){ setStatus('⚠️ Your browser does not support WebAssembly, which this tool needs. Try an up-to-date Chrome, Edge, Firefox or Safari.','error'); }
+        else if(m.indexOf('noort')>-1||m.indexOf('script load')>-1){ setStatus('⚠️ Could not load the AI engine. Check your connection and reload the page.','error'); }
+        else if(m.indexOf('modelfetch')>-1){ setStatus('⚠️ Could not download the AI model. Check your connection and try again.','error'); }
+        else{ setStatus('⚠️ Something went wrong removing the background. Try another photo or reload the page.','error'); }
+      });
+    }
+
+    function reset(){ file=null; origImg=null; name='image'; $('ctrl').classList.remove('show'); $('pv').style.display='none'; $('file').value=''; showProg(null); setStatus('',''); var dl=$('dl'); dl.style.display='none'; }
+    window.removeBg=removeBg; window.reset=reset;
+  </script>
+  <script src="/assets/analytics.js" defer></script>
+</body>
+</html>
