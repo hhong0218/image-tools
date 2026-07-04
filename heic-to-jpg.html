@@ -23,7 +23,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-9QKMV5JQL5');
+    if(location.hostname.indexOf('.pages.dev')===-1){gtag('config','G-9QKMV5JQL5',{linker:{domains:['quietools.com','calc.quietools.com','image.quietools.com','dev.quietools.com','typing.quietools.com','invoice.quietools.com']}});}
   </script>
   <!-- heic2any (libheif WASM) — decodes HEIC entirely in the browser; nothing is uploaded -->
   <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
@@ -199,7 +199,7 @@
         var delta=(orig>0 && blob.size<=orig)?'<br><span class="delta">▼ '+pct+'% smaller</span>':'';
         $('out-meta').innerHTML='<b>'+fmtBytes(blob.size)+'</b> · '+TGT+delta;
         var dl=$('dl'); dl.href=url; dl.download=name+'.'+EXT;
-        if(!dl.dataset.gaBound){ dl.dataset.gaBound='1'; dl.addEventListener('click', function(){ if (typeof gtag === 'function') { gtag('event', 'image_convert', { tool: 'heic-to-jpg' }); } }); }
+        if(!dl.dataset.gaBound){ dl.dataset.gaBound='1'; dl.addEventListener('click', function(){ qtEvent('download', { tool: 'heic-to-jpg', format: EXT }); }); }
         setStatus('✓ Converted to '+TGT+' ('+fmtBytes(blob.size)+'). Click Download '+TGT+'.','ok');
         try{ gtag('event','convert',{from:'heic',to:'jpg'}); }catch(e){}
       }).catch(function(e){
@@ -209,5 +209,6 @@
     function reset(){ file=null; name='image'; $('ctrl').classList.remove('show'); $('pv').style.display='none'; $('file').value=''; setStatus('',''); }
     window.convert=convert; window.reset=reset;
   </script>
+  <script src="/assets/analytics.js" defer></script>
 </body>
 </html>

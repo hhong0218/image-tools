@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-9QKMV5JQL5');
+    if(location.hostname.indexOf('.pages.dev')===-1){gtag('config','G-9QKMV5JQL5',{linker:{domains:['quietools.com','calc.quietools.com','image.quietools.com','dev.quietools.com','typing.quietools.com','invoice.quietools.com']}});}
   </script>
   <style>
     :root{
@@ -578,7 +578,7 @@
         showPreviewImg($('rpv-out'), url);
         $('rpv-out-meta').innerHTML = `<b>${w}×${h}</b> · ${fmtBytes(blob.size)}`;
         const dl = $('rdl'); dl.href = url; dl.download = `${t.name}-${w}x${h}.${extFor(outMime)}`;
-        if(!dl.dataset.gaBound){ dl.dataset.gaBound='1'; dl.addEventListener('click', function(){ if (typeof gtag === 'function') { gtag('event', 'image_convert', { tool: 'index' }); } }); }
+        if(!dl.dataset.gaBound){ dl.dataset.gaBound='1'; dl.addEventListener('click', function(){ qtEvent('download', { tool: 'image-tools-home', format: extFor(outMime) }); }); }
         $('rpv').style.display = 'grid';
         setStatus(st, `✓ Resized to ${w}×${h}px (${fmtBytes(blob.size)}). Click Download.`, 'ok');
       }, outMime, 0.92);
@@ -619,7 +619,7 @@
         const deltaTxt = smaller ? `▼ ${pct}% smaller` : `▲ ${Math.abs(pct)}% larger`;
         $('cpv-out-meta').innerHTML = `<b>${fmtBytes(blob.size)}</b> · ${extFor(mime).toUpperCase()} <br><span class="delta ${deltaClass}">${deltaTxt}</span>`;
         const dl = $('cdl'); dl.href = url; dl.download = `${t.name}-compressed.${extFor(mime)}`;
-        if(!dl.dataset.gaBound){ dl.dataset.gaBound='1'; dl.addEventListener('click', function(){ if (typeof gtag === 'function') { gtag('event', 'image_convert', { tool: 'index' }); } }); }
+        if(!dl.dataset.gaBound){ dl.dataset.gaBound='1'; dl.addEventListener('click', function(){ qtEvent('download', { tool: 'image-tools-home', format: extFor(mime) }); }); }
         $('cpv').style.display = 'grid';
         setStatus(st, `✓ Compressed: ${fmtBytes(orig)} → ${fmtBytes(blob.size)} (${smaller ? pct + '% smaller' : 'larger — try a lower quality or different format'}).`, smaller ? 'ok' : 'error');
       }, mime, q);
@@ -660,11 +660,12 @@
         showPreviewImg($('vpv-out'), url);
         $('vpv-out-meta').innerHTML = `<b>${extFor(convFmt).toUpperCase()}</b> · ${fmtBytes(blob.size)}`;
         const dl = $('vdl'); dl.href = url; dl.download = `${t.name}.${extFor(convFmt)}`;
-        if(!dl.dataset.gaBound){ dl.dataset.gaBound='1'; dl.addEventListener('click', function(){ if (typeof gtag === 'function') { gtag('event', 'image_convert', { tool: 'index' }); } }); }
+        if(!dl.dataset.gaBound){ dl.dataset.gaBound='1'; dl.addEventListener('click', function(){ qtEvent('download', { tool: 'image-tools-home', format: extFor(convFmt) }); }); }
         $('vpv').style.display = 'grid';
         setStatus(st, `✓ Converted to ${extFor(convFmt).toUpperCase()} (${fmtBytes(blob.size)}). Click Download.`, 'ok');
       }, convFmt, q);
     }
   </script>
+  <script src="/assets/analytics.js" defer></script>
 </body>
 </html>

@@ -23,7 +23,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-9QKMV5JQL5');
+    if(location.hostname.indexOf('.pages.dev')===-1){gtag('config','G-9QKMV5JQL5',{linker:{domains:['quietools.com','calc.quietools.com','image.quietools.com','dev.quietools.com','typing.quietools.com','invoice.quietools.com']}});}
   </script>
   <!-- exifr — reads the metadata so we can show what's hidden; everything stays in the browser -->
   <script src="https://cdn.jsdelivr.net/npm/exifr/dist/full.umd.js"></script>
@@ -220,7 +220,7 @@
           if(lastUrl){ try{URL.revokeObjectURL(lastUrl);}catch(e){} }
           var url=URL.createObjectURL(blob); lastUrl=url;
           var a=document.createElement('a'); a.href=url; a.download=name+'-clean.'+extFor(mime); document.body.appendChild(a); a.click(); a.remove();
-          if (typeof gtag === 'function') { gtag('event', 'image_convert', { tool: 'remove-exif' }); }
+          qtEvent('download', { tool: 'remove-exif', format: extFor(mime) });
           setStatus('✓ Downloaded a clean copy ('+fmtBytes(blob.size)+') — all EXIF metadata removed.','ok');
           try{ gtag('event','remove_exif'); }catch(e){}
         }, mime, 0.95);
@@ -231,5 +231,6 @@
     function reset(){ file=null; name='image'; $('ctrl').classList.remove('show'); $('file').value=''; $('preview').style.display='none'; $('meta').innerHTML=''; $('warn').style.display='none'; setStatus('',''); }
     window.removeAndDownload=removeAndDownload; window.reset=reset;
   </script>
+  <script src="/assets/analytics.js" defer></script>
 </body>
 </html>

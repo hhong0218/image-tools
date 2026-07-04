@@ -23,7 +23,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-9QKMV5JQL5');
+    if(location.hostname.indexOf('.pages.dev')===-1){gtag('config','G-9QKMV5JQL5',{linker:{domains:['quietools.com','calc.quietools.com','image.quietools.com','dev.quietools.com','typing.quietools.com','invoice.quietools.com']}});}
   </script>
   <!-- jsPDF — builds the PDF in the browser -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -238,7 +238,7 @@
             doc.addImage(jpeg, 'JPEG', dx, dy, w, h);
           }
           doc.save('images.pdf');
-          if (typeof gtag === 'function') { gtag('event', 'image_convert', { tool: 'image-to-pdf' }); }
+          qtEvent('download', { tool: 'image-to-pdf', format: 'pdf' });
           setStatus('✓ Created a '+items.length+'-page PDF. Saved as images.pdf.','ok');
           try{ gtag('event','image_to_pdf',{pages:items.length}); }catch(e){}
         }catch(err){ setStatus('Could not build the PDF. Try fewer or smaller images.','error'); }
@@ -247,5 +247,6 @@
     }
     window.createPdf=createPdf; window.clearAll=clearAll; window.move=move; window.removeAt=removeAt;
   </script>
+  <script src="/assets/analytics.js" defer></script>
 </body>
 </html>

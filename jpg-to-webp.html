@@ -23,7 +23,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-9QKMV5JQL5');
+    if(location.hostname.indexOf('.pages.dev')===-1){gtag('config','G-9QKMV5JQL5',{linker:{domains:['quietools.com','calc.quietools.com','image.quietools.com','dev.quietools.com','typing.quietools.com','invoice.quietools.com']}});}
   </script>
   <style>
     :root{--bg:#f6f8fc;--panel:#ffffff;--panel-2:#f1f4fa;--border:#e2e8f3;--border-strong:#cdd6e8;--text:#1a2233;--muted:#6b7689;--accent:#5b6cff;--accent-2:#7c4dff;--accent-soft:#eef0ff;--err:#e5484d;--ok:#1f9d55;--shadow:0 1px 3px rgba(20,30,60,.06),0 8px 24px rgba(20,30,60,.06);}
@@ -194,7 +194,7 @@
         var deltaHtml=(orig>0 && blob.size<=orig)?'<br><span class="delta">▼ '+pct+'% smaller</span>':'';
         $('pv-out-meta').innerHTML='<b>'+fmtBytes(blob.size)+'</b> · WebP'+deltaHtml;
         var dl=$('dl'); dl.href=url; dl.download=name+'.webp';
-        if(!dl.dataset.gaBound){ dl.dataset.gaBound='1'; dl.addEventListener('click', function(){ if (typeof gtag === 'function') { gtag('event', 'image_convert', { tool: 'jpg-to-webp' }); } }); }
+        if(!dl.dataset.gaBound){ dl.dataset.gaBound='1'; dl.addEventListener('click', function(){ qtEvent('download', { tool: 'jpg-to-webp', format: 'webp' }); }); }
         $('pv').style.display='grid';
         setStatus('✓ Converted to WebP ('+fmtBytes(blob.size)+'). Click Download WebP.','ok');
         try{ gtag('event','convert',{from:'jpg',to:'webp'}); }catch(e){}
@@ -203,5 +203,6 @@
     function reset(){ img=null; file=null; name='image'; $('ctrl').classList.remove('show'); $('pv').style.display='none'; $('file').value=''; setStatus('',''); }
     window.convert=convert; window.reset=reset;
   </script>
+  <script src="/assets/analytics.js" defer></script>
 </body>
 </html>
