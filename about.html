@@ -4,19 +4,19 @@
   <script>(function(){if(location.hostname.indexOf(".pages.dev")>-1){location.replace("https://image.quietools.com"+location.pathname+location.search+location.hash);}})();</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy | ImageTools</title>
-  <link rel="canonical" href="https://image.quietools.com/privacy">
-  <meta name="description" content="ImageTools privacy policy: how we handle your images (we don't upload them), analytics, and how cookies and advertising work on this site.">
+  <title>About ImageTools | Free Privacy-First Image Utilities</title>
+  <link rel="canonical" href="https://image.quietools.com/about">
+  <meta name="description" content="About ImageTools — a free, privacy-first toolbox for resizing, compressing, and converting images. Every tool runs entirely in your browser, so your files are never uploaded.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#5b6cff">
-  <meta property="og:title" content="Privacy Policy | ImageTools">
+  <meta property="og:title" content="About ImageTools">
   <meta property="og:image" content="https://image.quietools.com/og-image.jpg">
   <meta property="og:image:width" content="1376">
   <meta property="og:image:height" content="768">
   <meta name="twitter:image" content="https://image.quietools.com/og-image.jpg">
-  <meta property="og:description" content="How ImageTools handles your images, analytics, cookies, and advertising.">
+  <meta property="og:description" content="A free, privacy-first image toolbox. Every tool runs in your browser — your files never leave your device.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://image.quietools.com/privacy">
+  <meta property="og:url" content="https://image.quietools.com/about">
   <meta name="twitter:card" content="summary">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9QKMV5JQL5"></script>
@@ -48,8 +48,12 @@
     article p,article li{margin-bottom:.7rem}
     article ul,article ol{margin:0 0 .7rem 1.4rem}
     article strong{color:var(--text)}
+    .cta{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-weight:700;padding:.7rem 1.3rem;border-radius:10px;margin:1rem 0;box-shadow:var(--shadow)}
+    .cta:hover{filter:brightness(1.05);text-decoration:none}
+    .note{background:var(--panel-2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;font-size:.95rem;color:var(--muted);margin:1.25rem 0}
     footer{border-top:1px solid var(--border);padding:2rem 1.25rem;text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem}
     footer .links{margin-top:.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+    footer .links.legal{margin-top:.4rem}
   </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2324533526355362" crossorigin="anonymous"></script>
 </head>
@@ -62,34 +66,41 @@
     </nav>
   </header>
   <main>
-    <p class="crumb"><a href="/">Home</a> › Privacy Policy</p>
+    <p class="crumb"><a href="/">Home</a> › About</p>
     <article>
-      <h1>Privacy Policy</h1>
-      <p class="lead">ImageTools is built around a simple idea: your images are yours. This page explains exactly what happens to your files, what data we collect, and how cookies and advertising work on this site.</p>
+      <h1>About ImageTools</h1>
+      <p class="lead">ImageTools is a free, privacy-first toolbox for the everyday image jobs — resizing, compressing, converting formats, turning iPhone HEIC photos into JPG, and stripping EXIF metadata — all in one fast, no-nonsense site with no signup and no clutter.</p>
 
-      <h2>Your images never leave your device</h2>
-      <p>Every tool on ImageTools — resizing, compressing, converting, removing EXIF data, and building PDFs — runs entirely in your web browser using standard browser technology (the Canvas API and WebAssembly). Your images are <strong>never uploaded</strong> to any server. There is no account, no cloud storage, and no copy of your file kept anywhere. Once you close the tab, nothing remains.</p>
+      <h2>Privacy first, by design</h2>
+      <p>Every tool on ImageTools runs <strong>entirely in your web browser</strong>. When you drop in a photo to resize, compress, convert, or clean, that image is processed locally on your own device using standard browser technology — the Canvas API and WebAssembly. <strong>Nothing you open is uploaded to or stored on a server.</strong> There is no account, no cloud storage, and no copy of your file kept anywhere. In fact, once a tool's page has loaded, you can disconnect from the internet and it will keep working. That means you can work with private, sensitive images without them ever leaving your machine.</p>
 
-      <h2>Analytics</h2>
-      <p>We use Google Analytics to understand how many people visit the site and which tools are popular. This collects anonymous, aggregated information such as page views, approximate location (country/region), browser type, and device category. It does not include the contents of your images. This information helps us decide which tools and guides to build next.</p>
+      <h2>How it works</h2>
+      <p>The site is a collection of fast, self-contained static pages. Each tool decodes and re-encodes your image right in the browser: resizing and compression use the Canvas API, HEIC decoding uses the open-source libheif engine compiled to WebAssembly, and EXIF removal simply re-writes the pixels without the embedded metadata. There are no heavy frameworks and no third-party trackers embedded in the tools themselves. We use Google Analytics for anonymous, aggregated usage statistics and Google AdSense to display ads that keep the site free; both are described in our <a href="/privacy">Privacy Policy</a>.</p>
 
-      <h2>Cookies and Advertising</h2>
-      <p>This site uses cookies to improve your experience. We use Google AdSense to display advertisements. Google may use cookies to show ads based on your prior visits to this or other websites.</p>
-      <p>You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads">Google Ads Settings</a> or <a href="https://www.aboutads.info">aboutads.info</a>.</p>
+      <div class="note">
+        <strong>The core promise:</strong> your images never leave your device. There is no upload, no server-side processing, and no retention. When you close the tab, nothing remains. See our <a href="/terms">Terms of Service</a> for the full details.
+      </div>
 
-      <h2>Third-party services</h2>
-      <p>Google AdSense and Google Analytics are operated by Google LLC. Their use of data is governed by <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>. Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this and other websites.</p>
+      <h2>What's inside</h2>
+      <p>ImageTools currently includes:</p>
+      <ul>
+        <li><a href="/image-resizer">Image Resizer</a> — resize by pixels or percentage while keeping the aspect ratio.</li>
+        <li><a href="/image-compressor">Image Compressor</a> — shrink JPG, PNG, and WebP files with a live quality preview.</li>
+        <li><a href="/heic-to-jpg">HEIC to JPG</a> — convert iPhone and iPad photos into a universally compatible format.</li>
+        <li><a href="/remove-exif">Remove EXIF</a> — strip location and camera metadata before you share a photo.</li>
+        <li><a href="/image-to-pdf">Image to PDF</a> — combine images into a single PDF document.</li>
+        <li>Format converters — <a href="/png-to-jpg">PNG to JPG</a>, <a href="/jpg-to-png">JPG to PNG</a>, <a href="/webp-to-jpg">WebP to JPG</a>, and more.</li>
+      </ul>
 
-      <h2>Changes to this policy</h2>
-      <p>We may update this policy from time to time. Any changes will be posted on this page. Continued use of the site after a change means you accept the revised policy.</p>
+      <a class="cta" href="/">Browse all image tools →</a>
 
       <h2>Contact</h2>
-      <p>Questions about privacy? Reach us at <a href="mailto:infomatch@gmail.com">infomatch@gmail.com</a>.</p>
+      <p>Questions, feedback, or a tool you'd like to see? Reach us at <a href="mailto:infomatch@gmail.com">infomatch@gmail.com</a>.</p>
     </article>
   </main>
   <footer>
     <p>ImageTools — free, private, browser-based image utilities. Your files never leave your device.</p>
-    <div class="links"><a href="/">All tools</a><a href="/guides/">Guides</a><a href="/privacy">Privacy</a></div>
+    <div class="links"><a href="/">All tools</a><a href="/guides/">Guides</a></div>
     <div class="links legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/about">About</a><a href="/contact">Contact</a></div>
   </footer>
 </body>

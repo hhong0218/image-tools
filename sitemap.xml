@@ -25,5 +25,8 @@
   <url><loc>https://image.quietools.com/guides/best-image-format-for-web.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://image.quietools.com/guides/reduce-image-file-size-for-email.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://image.quietools.com/guides/youtube-thumbnail-size.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://image.quietools.com/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://image.quietools.com/about</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://image.quietools.com/contact</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://image.quietools.com/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://image.quietools.com/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
