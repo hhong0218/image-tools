@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(){if(location.hostname.indexOf(".pages.dev")>-1){location.replace("https://image.quietools.com"+location.pathname+location.search+location.hash);}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merge PDF — Combine PDFs Free &amp; Private (No Upload) | ImageTools</title>
+  <link rel="canonical" href="https://image.quietools.com/merge-pdf">
+  <meta name="description" content="Merge PDF files into one — combine multiple PDFs in the order you choose. Free, no signup, and 100% private: everything runs in your browser and nothing is uploaded.">
+  <meta name="keywords" content="merge pdf, combine pdf, join pdf, merge pdf files, combine pdf online free, merge pdf no upload">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Merge PDF — Combine PDFs Free &amp; Private">
+  <meta property="og:image" content="https://image.quietools.com/og-image.jpg">
+  <meta property="og:image:width" content="1376">
+  <meta property="og:image:height" content="768">
+  <meta name="twitter:image" content="https://image.quietools.com/og-image.jpg">
+  <meta property="og:description" content="Combine several PDFs into one file in your browser. Nothing uploaded, no signup.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://image.quietools.com/merge-pdf">
+  <meta name="twitter:card" content="summary">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9QKMV5JQL5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    if(location.hostname.indexOf('.pages.dev')===-1){gtag('config','G-9QKMV5JQL5',{linker:{domains:['quietools.com','calc.quietools.com','image.quietools.com','dev.quietools.com','typing.quietools.com','invoice.quietools.com']}});}
+  </script>
+  <!-- pdf-lib 1.17.1 (MIT) — reads and rebuilds PDFs in the browser. Self-hosted, no CDN. License: /vendor/pdf-lib/LICENSE -->
+  <script src="/vendor/pdf-lib/pdf-lib.min.js"></script>
+  <style>
+    :root{--bg:#f6f8fc;--panel:#ffffff;--panel-2:#f1f4fa;--border:#e2e8f3;--border-strong:#cdd6e8;--text:#1a2233;--muted:#6b7689;--accent:#5b6cff;--accent-2:#7c4dff;--accent-soft:#eef0ff;--err:#e5484d;--ok:#1f9d55;--shadow:0 1px 3px rgba(20,30,60,.06),0 8px 24px rgba(20,30,60,.06);}
+    @media (prefers-color-scheme: dark){:root{--bg:#0f1320;--panel:#171c2c;--panel-2:#1e2435;--border:#2a3145;--border-strong:#39415a;--text:#e8ecf5;--muted:#9aa4ba;--accent:#7c8bff;--accent-2:#a98bff;--accent-soft:#222a45;--err:#ff6b6b;--ok:#4ade80;--shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);}}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+    header{border-bottom:1px solid var(--border);padding:.85rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:var(--panel)}
+    .logo{font-size:1.15rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:.5rem;letter-spacing:-.01em}
+    .logo .mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:.95rem}
+    .logo span{color:var(--accent)}
+    .priv-pill{font-size:.72rem;font-weight:600;color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent);border:1px solid color-mix(in srgb,var(--ok) 30%,transparent);padding:.25rem .6rem;border-radius:999px;white-space:nowrap}
+    main{max-width:860px;margin:0 auto;padding:1.5rem 1.25rem 0}
+    .crumb{font-size:.82rem;color:var(--muted);margin-bottom:1rem}
+    .hero{text-align:center;padding:.5rem 0 .25rem}
+    h1{font-size:1.9rem;margin-bottom:.5rem;letter-spacing:-.02em;line-height:1.2}
+    .hero .lead{color:var(--muted);max-width:600px;margin:0 auto;font-size:1.01rem}
+    .ad-slot{margin:1.5rem 0;min-height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;border:1px dashed var(--border-strong);border-radius:12px;background:var(--panel-2)}
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:1.5rem;box-shadow:var(--shadow);margin-top:1rem}
+    .drop{display:block;border:2px dashed var(--border-strong);border-radius:14px;padding:2rem 1rem;text-align:center;cursor:pointer;transition:.18s;background:var(--panel-2);position:relative}
+    .drop:hover,.drop.drag{border-color:var(--accent);background:var(--accent-soft)}
+    .drop .big{font-size:2.2rem;line-height:1;margin-bottom:.6rem}
+    .drop .t{font-weight:600;margin-bottom:.25rem}
+    .drop .s{color:var(--muted);font-size:.85rem}
+    .drop input[type=file]{display:none}
+    .controls{margin-top:1.25rem;display:none}.controls.show{display:block}
+    .actions{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-top:.5rem}
+    button.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border:none;border-radius:10px;padding:.7rem 1.4rem;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+    button.primary:hover{filter:brightness(1.05)}button.primary:disabled{opacity:.5;cursor:not-allowed;filter:none}
+    button.ghost{background:var(--panel-2);color:var(--text);border:1px solid var(--border-strong);border-radius:10px;padding:.7rem 1.1rem;font-size:.92rem;font-weight:600;cursor:pointer}
+    .listwrap{margin-top:1.1rem;border:1px solid var(--border);border-radius:12px;overflow:hidden;display:none}
+    .listwrap.show{display:block}
+    .lhead{display:flex;justify-content:space-between;align-items:center;padding:.6rem .9rem;background:var(--panel-2);font-size:.82rem;color:var(--muted);font-weight:600}
+    .flist{max-height:340px;overflow:auto}
+    .frow{display:grid;grid-template-columns:auto 1fr auto auto auto;gap:.6rem;align-items:center;padding:.55rem .9rem;border-top:1px solid var(--border);font-size:.88rem}
+    .frow .ico{font-size:1.2rem}
+    .frow .fn{font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .frow .meta{color:var(--muted);font-size:.8rem;white-space:nowrap}
+    .frow .ord{display:flex;gap:.2rem}
+    .frow .ord button{background:var(--panel-2);border:1px solid var(--border-strong);border-radius:6px;width:26px;height:26px;font-size:.8rem;cursor:pointer;color:var(--text);padding:0}
+    .frow .rm{background:transparent;border:none;color:var(--muted);font-size:1.05rem;cursor:pointer;padding:.1rem .3rem}
+    .frow .rm:hover{color:var(--err)}
+    .status{margin:1rem 0 0;font-size:.9rem;min-height:1.3em}
+    .status.error{color:var(--err);font-weight:600}.status.ok{color:var(--ok);font-weight:600}
+    .spin{display:inline-block;width:.85em;height:.85em;border:2px solid color-mix(in srgb,var(--accent) 35%,transparent);border-top-color:var(--accent);border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px;margin-right:.4rem}
+    @keyframes sp{to{transform:rotate(360deg)}}
+    .related{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+    .related a{font-size:.85rem;background:var(--panel);border:1px solid var(--border-strong);border-radius:999px;padding:.4rem .85rem;color:var(--text)}
+    .related a:hover{border-color:var(--accent);text-decoration:none}
+    .seo{margin-top:2.5rem;border-top:1px solid var(--border);padding-top:1.75rem}
+    .seo h2{font-size:1.25rem;margin:1.5rem 0 .5rem;letter-spacing:-.01em}.seo h2:first-child{margin-top:0}
+    .seo p,.seo li{color:var(--muted);margin-bottom:.5rem}.seo ul{margin:0 0 .5rem 1.25rem}.seo strong{color:var(--text)}
+    .faq-q{font-weight:700;color:var(--text);margin-top:.75rem}
+    footer{border-top:1px solid var(--border);padding:2rem 1.25rem;text-align:center;color:var(--muted);font-size:.85rem;margin-top:3rem}
+    footer .links{margin-top:.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2324533526355362" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <a href="/" class="logo"><span class="mark">◩</span>Image<span>Tools</span></a>
+    <span class="priv-pill">🔒 100% in your browser</span>
+  </header>
+  <main>
+    <p class="crumb"><a href="/">Home</a> › Merge PDF</p>
+    <section class="hero">
+      <h1>Merge PDF</h1>
+      <p class="lead">Combine several PDF files into a single document — in the exact order you arrange them. No uploads, no signup; everything runs right in your browser.</p>
+    </section>
+    <!-- AD-SLOT:Top | AdSense 승인 후 교체 -->
+    <div class="ad-slot">Advertisement</div>
+    <div class="panel">
+      <label class="drop" id="drop">
+        <div class="big">📄+📄→📚</div>
+        <div class="t">Drop PDF files here or click to browse</div>
+        <div class="s">Add two or more PDFs; they're joined into one. Nothing is uploaded.</div>
+        <input type="file" id="file" accept="application/pdf,.pdf" multiple>
+      </label>
+      <div class="controls" id="ctrl">
+        <div class="actions">
+          <button class="primary" id="go" onclick="mergePdf()" disabled>Merge PDF</button>
+          <button class="ghost" onclick="document.getElementById('file').click()">+ Add more</button>
+          <button class="ghost" onclick="clearAll()">Clear</button>
+        </div>
+        <div class="listwrap" id="listwrap">
+          <div class="lhead"><span><b id="count">0</b> files (order with ▲▼)</span><span id="totals"></span></div>
+          <div class="flist" id="list"></div>
+        </div>
+        <p class="status" id="status"></p>
+      </div>
+      <div class="related">
+        <a href="/guides/how-to-merge-and-split-pdf">📖 Guide: Merge &amp; split PDF (nothing uploaded)</a>
+        <a href="/split-pdf">Split PDF</a>
+        <a href="/image-to-pdf">Image → PDF</a>
+        <a href="/">All tools</a>
+      </div>
+    </div>
+    <!-- AD-SLOT:Mid | AdSense 승인 후 교체 -->
+    <div class="ad-slot">Advertisement</div>
+    <section class="seo">
+      <h2>Combine PDFs into one file — privately</h2>
+      <p>Need to bundle a cover letter, résumé, and references into one document? Or stitch together scanned pages that came out as separate files? This <strong>merge PDF</strong> tool joins any number of PDFs into a single file, in the exact order you arrange them. Everything happens locally with the open-source pdf-lib library, so your documents never leave your device — no server, no account, no waiting on an upload.</p>
+      <h2>How to merge PDF files</h2>
+      <ul>
+        <li>Drop your <strong>PDF files</strong> into the box above (or click to browse). Add as many as you need.</li>
+        <li>Reorder them with the <strong>▲▼</strong> buttons so the pages appear in the sequence you want.</li>
+        <li>Click <strong>Merge PDF</strong> — the combined file downloads instantly as <code>merged.pdf</code>.</li>
+      </ul>
+      <h2>Frequently asked questions</h2>
+      <p class="faq-q">Are my PDF files uploaded?</p>
+      <p>No. The files are read and combined entirely in your browser with the open-source pdf-lib library. <strong>Nothing is uploaded</strong> — there's no server and no account. You can even go offline after the page loads and it still works.</p>
+      <p class="faq-q">Is there a limit on how many PDFs I can merge?</p>
+      <p>There's no hard limit. Because the work happens on your device, very large documents simply use more memory and take a moment longer to assemble.</p>
+      <p class="faq-q">Will merging change the quality of my pages?</p>
+      <p>No. Pages are copied intact — text, images, and vector graphics are preserved exactly. Merging only rearranges pages into one file; it doesn't re-render or recompress them.</p>
+      <p class="faq-q">Can I merge password-protected PDFs?</p>
+      <p>Encrypted PDFs need to be unlocked first. If a file is password-protected, remove the protection in your PDF viewer, then merge the unlocked copy here.</p>
+    </section>
+  </main>
+  <footer>
+    <p>ImageTools — free, private, browser-based tools. Your files never leave your device.</p>
+    <div class="links"><a href="/">All tools</a><a href="/split-pdf">Split PDF</a><a href="/image-to-pdf">Image to PDF</a></div>
+    <div class="links legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/about">About</a><a href="/contact">Contact</a></div>
+  </footer>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are my PDF files uploaded when I merge them?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The files are read and combined entirely in your browser with the open-source pdf-lib library. Nothing is uploaded, there is no server and no account, and it works offline after the page loads." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a limit on how many PDFs I can merge?",
+        "acceptedAnswer": { "@type": "Answer", "text": "There is no hard limit. Because the work happens on your device, very large documents simply use more memory and take a moment longer to assemble." }
+      },
+      {
+        "@type": "Question",
+        "name": "Will merging change the quality of my pages?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Pages are copied intact, so text, images, and vector graphics are preserved exactly. Merging only rearranges pages into one file; it does not re-render or recompress them." }
+      }
+    ]
+  }
+  </script>
+  <script>
+    "use strict";
+    var items = [];
+    function $(id){ return document.getElementById(id); }
+    function setStatus(msg,type,spin){ var el=$('status'); el.innerHTML=(spin?'<span class="spin"></span>':'')+msg; el.className='status'+(type?' '+type:''); }
+    function fmtBytes(b){ if(b===0||b==null)return '0 B'; var k=1024,u=['B','KB','MB','GB'],i=Math.min(Math.floor(Math.log(b)/Math.log(k)),u.length-1); return (b/Math.pow(k,i)).toFixed(i===0?0:(b/Math.pow(k,i)>=100?0:1))+' '+u[i]; }
+    function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    function render(){
+      var html='';
+      for(var i=0;i<items.length;i++){ var it=items[i];
+        html += '<div class="frow"><span class="ico">📄</span><span class="fn">'+esc(it.name)+'</span>'+
+                '<span class="meta">'+(it.pages!=null?it.pages+' pp · ':'')+fmtBytes(it.size)+'</span>'+
+                '<span class="ord"><button onclick="move('+i+',-1)" title="Up">▲</button><button onclick="move('+i+',1)" title="Down">▼</button></span>'+
+                '<button class="rm" onclick="removeAt('+i+')" title="Remove">×</button></div>';
+      }
+      $('list').innerHTML=html;
+      $('count').textContent=items.length;
+      $('listwrap').classList.toggle('show', items.length>0);
+      $('go').disabled = items.length<1;
+      var tot=items.reduce(function(a,it){return a+it.size;},0);
+      var pp=items.reduce(function(a,it){return a+(it.pages||0);},0);
+      $('totals').textContent = items.length? (pp?pp+' pages · ':'')+fmtBytes(tot) : '';
+    }
+    function readPdf(file){
+      return new Promise(function(res,rej){
+        var r=new FileReader(); r.onerror=rej;
+        r.onload=function(e){ res(new Uint8Array(e.target.result)); };
+        r.readAsArrayBuffer(file);
+      });
+    }
+    function addFiles(fl){
+      var arr=[].slice.call(fl).filter(function(f){ return f.type==='application/pdf' || /\.pdf$/i.test(f.name); });
+      if(!arr.length){ setStatus('Please choose PDF files.','error'); return; }
+      var ns=window.PDFLib;
+      setStatus('Reading '+arr.length+' file(s)…','',true);
+      Promise.all(arr.map(function(f){
+        return readPdf(f).then(function(bytes){
+          var rec={name:f.name, size:f.size, bytes:bytes, pages:null};
+          if(ns){ return ns.PDFDocument.load(bytes,{updateMetadata:false}).then(function(d){ rec.pages=d.getPageCount(); return rec; }).catch(function(){ return rec; }); }
+          return rec;
+        });
+      })).then(function(loaded){
+        loaded.forEach(function(o){ items.push(o); });
+        $('ctrl').classList.add('show'); render();
+        setStatus('Added '+loaded.length+' file(s). Arrange the order and click Merge PDF.','ok');
+      }).catch(function(){ setStatus('Could not read one of the files. Make sure they are valid PDFs.','error'); });
+    }
+    function move(i,dir){ var j=i+dir; if(j<0||j>=items.length) return; var t=items[i]; items[i]=items[j]; items[j]=t; render(); }
+    function removeAt(i){ items.splice(i,1); render(); if(!items.length){ $('ctrl').classList.remove('show'); } }
+    function clearAll(){ items=[]; $('ctrl').classList.remove('show'); $('file').value=''; setStatus('',''); render(); }
+
+    var drop=$('drop'), input=$('file');
+    input.addEventListener('change', function(){ if(input.files&&input.files.length) addFiles(input.files); input.value=''; });
+    ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.add('drag'); }); });
+    ['dragleave','dragend','drop'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); e.stopPropagation(); drop.classList.remove('drag'); }); });
+    drop.addEventListener('drop', function(e){ var f=e.dataTransfer&&e.dataTransfer.files; if(f&&f.length) addFiles(f); });
+
+    function mergePdf(){
+      if(!items.length) return;
+      var ns=window.PDFLib; if(!ns||!ns.PDFDocument){ setStatus('PDF library failed to load — check your connection and reload.','error'); return; }
+      $('go').disabled=true; setStatus('Merging '+items.length+' file(s)…','',true);
+      setTimeout(function(){
+        (async function(){
+          try{
+            var out = await ns.PDFDocument.create();
+            for(var i=0;i<items.length;i++){
+              var src = await ns.PDFDocument.load(items[i].bytes,{ignoreEncryption:false});
+              var copied = await out.copyPages(src, src.getPageIndices());
+              copied.forEach(function(p){ out.addPage(p); });
+            }
+            var bytes = await out.save();
+            var blob = new Blob([bytes], {type:'application/pdf'});
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a'); a.href=url; a.download='merged.pdf'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+            setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+            var total = out.getPageCount();
+            setStatus('✓ Merged '+items.length+' file(s) into a '+total+'-page PDF. Saved as merged.pdf.','ok');
+            try{ if(window.qtEvent) qtEvent('download', {tool:'merge-pdf', format:'pdf'}); }catch(e){}
+            try{ gtag('event','merge_pdf',{files:items.length,pages:total}); }catch(e){}
+          }catch(err){
+            setStatus('Could not merge these files. If a PDF is password-protected, unlock it first, then try again.','error');
+          }
+          $('go').disabled=false;
+        })();
+      }, 30);
+    }
+    window.mergePdf=mergePdf; window.clearAll=clearAll; window.move=move; window.removeAt=removeAt;
+  </script>
+  <script src="/assets/analytics.js" defer></script>
+</body>
+</html>
